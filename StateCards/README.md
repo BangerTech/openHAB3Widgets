@@ -2,6 +2,11 @@ Connection_Card_1
 
 ![111](https://user-images.githubusercontent.com/73241309/145098095-feef6705-97ac-4b6f-a6fc-fa6e169c28a5.PNG)
 
+Connection_Card_2
+
+![222](https://user-images.githubusercontent.com/73241309/145099421-0f9623e2-34c7-417b-b4c5-e02be9dec83b.PNG)
+
+
 Service_Card
 
 ![222](https://user-images.githubusercontent.com/73241309/145098919-6cdb90b8-c0ca-4007-9657-ed4c8bb25974.PNG)
