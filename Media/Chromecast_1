@@ -1,0 +1,96 @@
+uid: Chromecast_1
+tags: []
+props:
+  parameters:
+    - description: How all the Items associated with this chromecast starts
+      label: Item prefix
+      name: prefix
+      required: false
+      type: TEXT
+    - description: Title for the widget
+      label: Static Title
+      name: title
+      required: false
+  parameterGroups: []
+timestamp: Mar 11, 2021, 10:26:18 AM
+component: f7-card
+config:
+  title: =props.title
+slots:
+  default:
+    - component: f7-row
+      slots:
+        default:
+          - component: oh-image
+            config:
+              item: =props.prefix+"_Image"
+              style:
+                width: 100%
+                height: auto
+    - component: f7-row
+      config:
+        class:
+          - justify-content-left
+      slots:
+        default:
+          - component: f7-col
+            slots:
+              default:
+                - component: Label
+                  config:
+                    class:
+                      - text-align-center
+                    text: =items[props.prefix+"_MediaArtist"].state
+          - component: f7-col
+            slots:
+              default:
+                - component: Label
+                  config:
+                    class:
+                      - text-align-center
+                    text: =items[props.prefix+"_MediaTitle"].state
+    - component: f7-row
+      config:
+        class:
+          - padding-top
+          - padding-bottom
+      slots:
+        default:
+          - component: f7-col
+            slots:
+              default:
+                - component: oh-player-controls
+                  config:
+                    item: =props.prefix+"_MediaControl"
+          - component: f7-col
+            slots:
+              default:
+                - component: oh-slider
+                  config:
+                    item: =props.prefix+"_Volume"
+                    min: 0
+                    max: 100
+                    step: 10
+                    unit: "%"
+                    label: true
+                - component: oh-button
+                  config:
+                    text: Stop
+                    iconF7: stop
+                    fill: true
+                    color: red
+                    action: command
+                    actionCommand: ON
+                    actionFeedback: Media Stopped
+                    actionItem: =props.prefix+"_Stop"
+                    class:
+                      - margin-top
+    - component: f7-row
+      config:
+        class:
+          - justify-content-center
+      slots:
+        default:
+          - component: Label
+            config:
+              text: =items[props.prefix+"_App"].state
