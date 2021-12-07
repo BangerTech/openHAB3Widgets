@@ -1,0 +1,188 @@
+uid: Cell_Weather_Actual_1
+tags:
+  - Wetterkarte Icons
+props:
+  parameters:
+    - description: Small title on top of the card
+      label: Title
+      name: title
+      required: false
+      type: TEXT
+    - description: HEX or rgba
+      label: Background Color
+      name: bgcolor
+      required: false
+      type: TEXT
+    - description: page ID of chart to be opened
+      label: page
+      name: page
+      required: false
+    - context: item
+      description: Item of Outsidetemp
+      label: Outsidetemperature
+      name: item_temp
+      required: false
+      type: TEXT
+    - context: item
+      description: Item of Outsidehumidity
+      label: Humidity
+      name: item_hum
+      required: false
+      type: TEXT
+    - context: item
+      description: Item of Rain Today
+      label: Rain
+      name: item_rain
+      required: false
+      type: TEXT
+    - context: item
+      description: Item of Strikes
+      label: Strike Count
+      name: item_strike
+      required: false
+      type: TEXT
+    - context: item
+      description: Item of Illuminance
+      label: Illuminance
+      name: item_ill
+      required: false
+      type: TEXT
+    - context: item
+      description: Item of Wind Avg
+      label: Wind
+      name: item_wind
+      required: false
+      type: TEXT
+    - context: item
+      description: Item of Wind Direction
+      label: Wind Dir
+      name: item_wind_dir
+      required: false
+      type: TEXT
+  parameterGroups: []
+timestamp: Nov 25, 2021, 2:23:55 PM
+component: f7-card
+config:
+  style:
+    background-color: "=props.bgcolor ? props.bgcolor : ''"
+    border-radius: var(--f7-card-expandable-border-radius)
+    box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.1)
+    class:
+      - padding: 0px
+    height: 150px
+    margin-left: 5px
+    margin-right: 5px
+    noShadow: false
+slots:
+  content:
+    - component: f7-block
+      config:
+        style:
+          display: flex
+          flex-direction: row
+          left: 16px
+          position: absolute
+          top: -5px
+      slots:
+        default:
+          - component: f7-icon
+            config:
+              f7: sun_max
+              size: 18
+              style:
+                margin-right: 10px
+          - component: Label
+            config:
+              style:
+                font-size: 12px
+                margin-top: 0px
+              text: "=props.title ? props.title : ''"
+    - component: f7-block
+      config:
+        style:
+          left: 16px
+          position: absolute
+          top: 60px
+          width: 100%
+      slots:
+        default:
+          - component: f7-chip
+            config:
+              iconColor: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
+              iconF7: thermometer
+              iconSize: 20
+              style:
+                --f7-chip-bg-color: rgba(255, 255, 255, 0)
+                font-size: 16px
+                margin-bottom: 10px
+              text: =items[props.item_temp].state
+          - component: f7-chip
+            config:
+              iconColor: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
+              iconF7: drop
+              iconSize: 20
+              style:
+                --f7-chip-bg-color: rgba(255, 255, 255, 0)
+                font-size: 16px
+                margin-bottom: 10px
+              text: =items[props.item_hum].displayState
+          - component: f7-chip
+            config:
+              iconColor: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
+              iconF7: sun_min
+              iconSize: 20
+              style:
+                --f7-chip-bg-color: rgba(255, 255, 255, 0)
+                font-size: 16px
+                margin-bottom: 10px
+              text: =items[props.item_ill].displayState
+          - component: f7-chip
+            config:
+              iconColor: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
+              iconF7: cloud_drizzle
+              iconSize: 20
+              style:
+                --f7-chip-bg-color: rgba(255, 255, 255, 0)
+                font-size: 16px
+                margin-bottom: 10px
+              text: =items[props.item_rain].displayState
+          - component: f7-chip
+            config:
+              iconColor: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
+              iconF7: bolt
+              iconSize: 20
+              style:
+                --f7-chip-bg-color: rgba(255, 255, 255, 0)
+                font-size: 16px
+                margin-bottom: 10px
+              text: =items[props.item_strike].state
+          - component: f7-chip
+            config:
+              iconColor: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
+              iconF7: wind
+              iconSize: 20
+              style:
+                --f7-chip-bg-color: rgba(255, 255, 255, 0)
+                font-size: 16px
+                margin-bottom: 10px
+              text: =items[props.item_wind].displayState
+          - component: f7-chip
+            config:
+              iconColor: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
+              iconF7: compass
+              iconSize: 20
+              style:
+                --f7-chip-bg-color: rgba(255, 255, 255, 0)
+                font-size: 16px
+                margin-bottom: 10px
+              text: =items[props.item_wind_dir].state
+    - component: oh-link
+      config:
+        action: navigate
+        actionPage: ='page:' + props.page
+        style:
+          height: 150px
+          left: 0px
+          position: absolute
+          top: 0px
+          width: 100%
