@@ -1,0 +1,167 @@
+uid: Cell_Light_Card_2
+tags:
+  - Schalter ohne Schieberegler
+props:
+  parameters:
+    - description: Small title on top of the card
+      label: Title
+      name: title
+      required: false
+      type: TEXT
+    - description: Header big sized
+      label: Header
+      name: header
+      required: false
+      type: TEXT
+    - description: icon name without ".png", located in static/icons/ folder
+      label: Icon
+      name: iconimage
+      required: false
+      type: TEXT
+    - description: rgba or HEX
+      label: Background Color
+      name: bgcolor
+      required: false
+      type: TEXT
+    - context: item
+      description: Item to control on/off
+      label: Item
+      name: item_schalter
+      required: false
+      type: TEXT
+    - context: item
+      description: Item to control brightness
+      label: Item brightness
+      name: item_brightness
+      required: false
+      type: TEXT
+    - context: item
+      description: Item to control color temperature
+      label: Item light temperature
+      name: item_light_temperature
+      required: false
+      type: TEXT
+  parameterGroups: []
+timestamp: Nov 25, 2021, 2:17:43 PM
+component: f7-card
+config:
+  style:
+    background-color: "=props.bgcolor ? props.bgcolor : ''"
+    border-radius: var(--f7-card-expandable-border-radius)
+    box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.1)
+    height: 120px
+    margin-left: 5px
+    margin-right: 5px
+    noShadow: false
+    padding: 0px
+slots:
+  content:
+    - component: f7-block
+      config:
+        style:
+          display: flex
+          flex-direction: row
+          left: 40px
+          position: absolute
+          top: -5px
+      slots:
+        default:
+          - component: Label
+            config:
+              style:
+                font-size: 12px
+                margin-top: 0px
+              text: "=props.title ? props.title : ''"
+    - component: f7-block
+      config:
+        style:
+          flex-direction: row
+          left: 10px
+          position: absolute
+          top: 50px
+      slots:
+        default:
+          - component: Label
+            config:
+              style:
+                font-size: 17px
+                font-weight: 600
+                margin-left: 0px
+                margin-top: 0px
+              text: "=props.header ? props.header : 'Set Props'"
+    - component: f7-block
+      config:
+        class:
+          - no-padding
+        style:
+          flex-direction: row
+          position: absolute
+          top: 70px
+          width: 100%
+      slots:
+        default:
+          - component: oh-slider
+            config:
+              color: red
+              item: =props.item_light_temperature
+              label: true
+              max: 100
+              min: 0
+              style:
+                --f7-range-bar-active-bg-color: transparent
+                --f7-range-bar-bg-color: linear-gradient(to right, rgba(215, 226, 255), rgba(224, 238, 238),rgba(255, 215, 44, 0.5),rgba(255, 215, 44, 0.8))
+                --f7-range-bar-border-radius: 10px
+                --f7-range-bar-size: 12px
+                --f7-range-knob-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3)
+                --f7-range-knob-size: 20px
+                --f7-range-label-text-color: black
+                left: 20px
+                margin-top: 7px
+                width: calc(100% - 40px)
+                z-index: 99 !important
+              visible: "=(props.item_light_temperature) ? true : false"
+    - component: f7-block
+      config:
+        class:
+          - no-padding
+        style:
+          flex-direction: row
+          position: absolute
+          top: 100px
+          width: 100%
+      slots:
+        default:
+          - component: oh-slider
+            config:
+              color: red
+              item: =props.item_brightness
+              label: true
+              style:
+                --f7-range-bar-active-bg-color: transparent
+                --f7-range-bar-bg-color: linear-gradient(to right, rgba(113,113,113,0.8), rgba(246,158,81,0.1))
+                --f7-range-bar-border-radius: 10px
+                --f7-range-bar-size: 12px
+                --f7-range-knob-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3)
+                --f7-range-knob-size: 20px
+                --f7-range-label-text-color: black
+                left: 20px
+                width: calc(100% - 40px)
+                z-index: 99 !important
+              visible: "=(props.item_brightness) ? true : false"
+    - component: oh-toggle
+      config:
+        item: =props.item_schalter
+        style:
+          position: absolute
+          right: 10px
+          top: 15px
+    - component: oh-image
+      config:
+        style:
+          height: 25px
+          left: 10px
+          opacity: 0.7
+          position: absolute
+          top: 10px
+        url: ='/static/icons/' + props.iconimage + '.png'
+        visible: "=props.iconimage ? true : false"
