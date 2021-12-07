@@ -1,0 +1,64 @@
+uid: Service_Card
+tags: []
+props:
+  parameters: []
+  parameterGroups: []
+timestamp: Feb 18, 2021, 9:18:06 PM
+component: oh-list-card
+config:
+  title: Services Status
+  accordionList: true
+  #footer: Online status of home automation related services
+slots:
+  default:
+    - component: oh-list-item
+      config:
+        title: All Services
+        icon: oh:network
+        badge: OK
+        badgeColor: green
+      slots:
+        accordion:
+          - component: oh-list
+            config:
+              accordionList: true
+              class:
+                - margin-left
+            slots:
+              default:
+                - component: oh-list-item
+                  config:
+                    title: Persistence
+                  slots:
+                    accordion:
+                      - component: oh-list
+                        config:
+                          accordionList: true
+                          class:
+                            - margin-left
+                        slots:
+                          default:
+                            - component: oh-list-item
+                              config:
+                                title: influxDB
+                            - component: oh-list-item
+                              config:
+                                title: Grafana
+                - component: oh-list-item
+                  config:
+                    title: Zigbee
+                  slots:
+                    accordion:
+                      - component: oh-list
+                        config:
+                          accordionList: true
+                          class:
+                            - margin-left
+                        slots:
+                          default:
+                            - component: oh-list-item
+                              config:
+                                title: Service1
+                            - component: oh-list-item
+                              config:
+                                title: Service2
