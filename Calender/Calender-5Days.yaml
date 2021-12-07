@@ -1,0 +1,148 @@
+uid: Calender-5Days
+tags: []
+props:
+  parameters:
+    - description: A text prop
+      label: Prop 1
+      name: prop1
+      required: false
+      type: TEXT
+    - context: item
+      description: An item to control
+      label: Item
+      name: item
+      required: false
+      type: TEXT
+  parameterGroups: []
+timestamp: Feb 25, 2021, 9:59:43 PM
+component: f7-card
+config:
+  style:
+    height: '=props.cardheight ? props.cardheight : "275px"'
+    background: black
+    border-radius: 20px
+slots:
+  default:
+    - component: f7-block
+      config:
+        class:
+          - no-padding
+          - no-margin
+        style:
+          width: 100%
+          height: 100%
+          position: absolute
+          top: 0
+          left: 0
+      slots:
+        default:
+          - component: f7-row
+            config:
+              width: 100%
+              style:
+                justify-items: center
+            slots:
+              default:
+                - component: f7-col
+                  config:
+                    style:
+                      width: 20%
+                      display: grid
+                      align-items: center
+                      justify-items: start
+                  slots:
+                    default:
+                      - component: f7-row
+                        config:
+                          style:
+                            height: 10%
+                            justify-items: center
+                        slots:
+                          default:
+                            - component: Label
+                              config:
+                                text: =dayjs().format('MMMM')
+                                style:
+                                  padding-top: 5px
+                                  padding-left: 20px
+                                  color: grey
+                      - component: f7-row
+                        config:
+                          style:
+                            height: 10%
+                            justify-items: center
+                        slots:
+                          default:
+                            - component: Label
+                              config:
+                                text: =dayjs().format('dddd')
+                                style:
+                                  padding-left: 20px
+                                  font-size: 17px
+                                  color: "#005eff"
+                      - component: f7-row
+                        config:
+                          style:
+                            height: 70%
+                            align-items: end
+                        slots:
+                          default:
+                            - component: Label
+                              config:
+                                text: =dayjs().format('DD')
+                                style:
+                                  font-size: 75px
+                                  padding-left: 20px
+                                  position: absolute
+                                  bottom: 0
+                                  left: 0
+                                  color: lightgrey
+                - component: f7-col
+                  config:
+                    style:
+                      width: 70%
+                      margin-top: 40px
+                  slots:
+                    default:
+                      - component: f7-list
+                        config:
+                          style:
+                            width: 200px
+                        slots:
+                          default:
+                            - component: f7-list-item
+                              config:
+                                title: =dayjs(items.Mull_Ergebnisstart_0.state).format('DD.MM.')
+                                footer: =items.Mull_Ergebnistitel_0.state
+                                style:
+                                  border-left: solid
+                                  border-color: '=items.Mull_Ergebnistitel_0.state === "Restmüll" ? "grey" : (items.Mull_Ergebnistitel_0.state === "Gelbe Tonne" ? "yellow" : (items.Mull_Ergebnistitel_0.state === "Papiertonne" ? "#005eff" : ""))'
+                            - component: f7-list-item
+                              config:
+                                title: =dayjs(items.Mull_Ergebnisstart_1.state).format('DD.MM.')
+                                footer: =items.Mull_Ergebnistitel_1.state
+                                style:
+                                  border-left: solid
+                                  border-color: '=items.Mull_Ergebnistitel_1.state === "Restmüll" ? "grey" : (items.Mull_Ergebnistitel_1.state === "Gelbe Tonne" ? "yellow" : (items.Mull_Ergebnistitel_1.state === "Papiertonne" ? "#005eff" : ""))'
+                            - component: f7-list-item
+                              config:
+                                title: =dayjs(items.Mull_Ergebnisstart_Tag3.state).format('DD.MM.')
+                                footer: =items.Mull_Ergebnistitel_2.state
+                                style:
+                                  border-left: solid
+                                  border-color: '=items.Mull_Ergebnistitel_2.state === "Restmüll" ? "grey" : (items.Mull_Ergebnistitel_2.state === "Gelbe Tonne" ? "yellow" : (items.Mull_Ergebnistitel_2.state === "Papiertonne" ? "#005eff" : ""))'
+                            - component: f7-list-item
+                              config:
+                                title: =dayjs(items.Mull_Ergebnisstart_Tag2.state).format('DD.MM.')
+                                footer: =items.Mull_Ergebnistitel_Tag3.state
+                                style:
+                                  border-left: solid
+                                  border-color: '=items.Mull_Ergebnistitel_Tag3.state === "Restmüll" ? "grey" : (items.Mull_Ergebnistitel_Tag3.state === "Gelbe Tonne" ? "yellow" : (items.Mull_Ergebnistitel_Tag3.state === "Papiertonne" ? "#005eff" : ""))'
+                            - component: f7-list-item
+                              config:
+                                title: =dayjs(items.Mull_Ergebnisstart_Tag5.state).format('DD.MM.')
+                                footer: =items.Mull_Ergebnistitel_Tag5.state
+                                style:
+                                  border-left: solid
+                                  border-color: '=items.Mull_Ergebnistitel_Tag5.state === "Restmüll" ? "grey" : (items.Mull_Ergebnistitel_Tag5.state === "Gelbe Tonne" ? "yellow" : (items.Mull_Ergebnistitel_Tag5.state === "Papiertonne" ? "#005eff" : ""))'
+                      - component: f7-app
