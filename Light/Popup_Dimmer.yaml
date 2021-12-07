@@ -1,0 +1,43 @@
+uid: Popup_Dimmer
+tags: []
+props:
+  parameters:
+    - description: Small title on top of the card
+      label: Title
+      name: title
+      required: false
+      type: TEXT
+    - context: item
+      description: item to control
+      label: Item
+      name: item
+      required: false
+      type: TEXT
+timestamp: Nov 24, 2021, 11:29:40 PM
+component: f7-card
+config:
+  style:
+    margin: 0px
+  title: =props.title + " Dimmen"
+slots:
+  default:
+    - component: f7-row
+      config:
+        class:
+          - display-flex
+        style:
+          padding-bottom: 25px
+          padding-left: 20px
+          padding-right: 20px
+          padding-top: 15px
+      slots:
+        default:
+          - component: oh-slider
+            config:
+              item: =props.item
+              label: true
+              max: 100
+              min: 0
+              scale: true
+              scaleSteps: 4
+              unit: "%"
