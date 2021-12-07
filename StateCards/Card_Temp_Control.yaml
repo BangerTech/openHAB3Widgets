@@ -1,0 +1,214 @@
+uid: Card_Temp_Control
+tags:
+  - homekit-look
+  - Soll Tag
+  - in use
+props:
+  parameters:
+    - description: Location?
+      label: Prop 1
+      name: prop1
+      required: false
+      type: TEXT
+    - description: Thermostate icon f7
+      label: f7 icon name
+      name: icon1
+      required: false
+      type: TEXT
+    - description: Humidity icon f7
+      label: f7 icon name
+      name: icon2
+      required: false
+      type: TEXT
+    - context: item
+      description: A Temperature item to display
+      label: Item
+      name: itemTemp
+      required: false
+      type: TEXT
+    - context: item
+      description: A Set-Temperature item to display
+      label: Item
+      name: itemTempSoll
+      required: false
+      type: TEXT
+    - context: item
+      description: An Humidity item to display
+      label: Item
+      name: itemHum
+      required: false
+      type: TEXT
+    - context: item
+      description: the valve state
+      label: Item
+      name: itemValve
+      required: false
+      type: TEXT
+    - context: item
+      description: Item for temperature channel
+      label: Ambient temperature
+      name: itemAmbientTemp
+      required: false
+      type: TEXT
+    - context: item
+      description: Item for outdoor temperature channel
+      label: Outdoor temperature
+      name: itemOutdoorTemp
+      required: false
+      type: TEXT
+    - context: item
+      description: Item for target temperature channel
+      label: Target temperature
+      name: itemTargetTemp
+      required: true
+      type: TEXT
+    - context: item
+      description: Item for operation mode channel
+      label: Operation mode
+      name: itemMode
+      required: true
+      type: TEXT
+  parameterGroups: []
+timestamp: Feb 18, 2021, 1:40:25 PM
+component: f7-card
+config:
+  style:
+    noShadow: false
+    class:
+      - padding
+    border-radius: var(--f7-card-expandable-border-radius)
+    box-shadow: var(--f7-card-expandable-box-shadow)
+    background-color: '=(Number.parseFloat(items[props.itemHum].state.split(" ")[0]) > 60) ? "white" : (Number.parseFloat(items[props.itemTemp].state.split(" ")[0]) > 23) ? "white" : "rgba(228,228,228,0.9)"'
+    height: 8.5em
+    min-width: 9.5em
+    max-width: 400px
+slots:
+  content:
+    - component: f7-block
+      config:
+        style:
+          margin-left: -6px
+          padding: -1px
+          display: flex
+          flex-direction: column
+          align-items: start
+    - component: f7-row
+      config:
+        class:
+          - justify-content-left
+      slots:
+        default:
+          - component: f7-icon
+            config:
+              f7: =props.icon1
+              size: 22
+              class:
+                - align-self-center
+              style:
+                margin-left: -6px
+                margin-top: 0px
+                color: '=(Number.parseFloat(items[props.itemHum].state.split(" ")[0]) > 60) ? "black" : (Number.parseFloat(items[props.itemTemp].state.split(" ")[0]) > 23) ? "black" : "rgb(0,0,0,0.5)"'
+          - component: Label
+            config:
+              text: =props.prop1
+              style:
+                font-size: 14px
+                font-weight: 500
+                margin-left: -4px
+                margin-top: 0px
+                color: '=(Number.parseFloat(items[props.itemHum].state.split(" ")[0]) > 60) ? "black" : (Number.parseFloat(items[props.itemTemp].state.split(" ")[0]) > 23) ? "black" : "rgb(0,0,0,0.5)"'
+    - component: f7-row
+      config:
+        class:
+          - justify-content-left
+      slots:
+        default:
+          - component: Label
+            config:
+              text: =(Number.parseFloat(items[props.itemTemp].state.split(" ")[0]) * 100 / 100).toFixed(1) + '°'
+              style:
+                font-size: 32px
+                line-height: 1.1
+                font-weight: 498
+                margin-left: 0px
+                margin-top: 0px
+                color: '=(Number.parseFloat(items[props.itemHum].state.split(" ")[0]) > 60) ? "black" : (Number.parseFloat(items[props.itemTemp].state.split(" ")[0]) > 23) ? "black" : "rgb(0,0,0,0.5)"'
+    - component: f7-row
+      config:
+        class:
+          - justify-content-left
+      slots:
+        default:
+          - component: f7-icon
+            config:
+              f7: =props.icon2
+              size: 16
+              style:
+                top: 5px
+                left: 0px
+                color: '=(Number.parseFloat(items[props.itemHum].state.split(" ")[0]) > 60) ? "red" : "rgb(0,0,0,0.5)"'
+          - component: Label
+            config:
+              text: =(Number.parseFloat(items[props.itemHum].state.split(" ")[0]) * 100 / 100).toFixed(0) + '%'
+              visible: =props.itemHum !== undefined
+              style:
+                top: 5px
+                left: 0px
+                font-size: 13px
+                font-weight: 500
+                color: '=(Number.parseFloat(items[props.itemHum].state.split(" ")[0]) > 60) ? "red" : "rgb(0,0,0,0.5)"'
+    - component: f7-row
+      config:
+        class:
+          - float-right
+      slots:
+        default:
+          - component: f7-icon
+            config:
+              f7: arrowshape_turn_up_right
+              size: 16
+              style:
+                opacity: 0.5
+                bottom: 0px
+                right: -45px
+                color: rgb(0,0,0,0.5)
+          - component: f7-chip
+            config:
+              bgColor: '=(Number.parseFloat(items[props.itemValve].state.split(" ")[0]) > 15) ? "orange" : "green"'
+              text: =(Number.parseFloat(items[props.itemTempSoll].state.split(" ")[0]) * 100 / 100).toFixed(0)
+              style:
+                color: white
+                size: 20
+                z-index: 2
+                bottom: 75px
+                border-radius: 25px 25px 25px 25px
+                margin-top: 2px
+                right: -5px
+    - component: oh-trend
+      config:
+        trendItem: =[props.itemTemp]
+        style:
+          --f7-theme-color-bg-color: transparent
+          background: var(--f7-theme-color-bg-color)
+          filter: opacity(30%)
+          position: absolute
+          width: 100%
+          height: 100%
+          top: 0
+          left: 2
+          z-index: 1
+    - component: oh-link
+      config:
+        action: popup
+        actionModal: widget:HM_Thermostat_Control_Final
+        actionModalConfig:
+          itemAmbientTemp: =props.itemAmbientTemp
+          itemOutdoorTemp: =props.itemOutdoorTemp
+          itemTargetTemp: =props.itemTargetTemp
+          itemMode: =props.itemMode
+        style:
+          position: absolute
+          width: 100%
+          height: 100%
+          top: 0
+          left: 0
