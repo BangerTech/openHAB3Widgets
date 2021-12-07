@@ -1,0 +1,124 @@
+uid: Card_Dimmer_Popup_1.0
+tags: []
+props:
+  parameters:
+    - description: Small title on top of the card
+      label: Title
+      name: title
+      required: false
+      type: TEXT
+    - description: Header big sized
+      label: Header
+      name: header
+      required: false
+      type: TEXT
+    - context: item
+      description: Item to control
+      label: Item
+      name: item
+      required: false
+      type: TEXT
+  parameterGroups: []
+timestamp: Nov 24, 2021, 11:30:05 PM
+component: f7-card
+config:
+  style:
+    background-color: "=props.bgcolor ? props.bgcolor : ''"
+    border-radius: var(--f7-card-expandable-border-radius)
+    box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.1)
+    class:
+      - padding: 0px
+    height: 70px
+    margin-bottom: 2px
+    margin-left: 2px
+    margin-right: 2px
+    margin-top: 2px
+    noShadow: false
+slots:
+  content:
+    - component: f7-block
+      config:
+        style:
+          display: flex
+          flex-direction: row
+          left: 8px
+          position: absolute
+          top: -5px
+      slots:
+        default:
+          - component: f7-icon
+            config:
+              f7: '=(Number.parseInt(items[props.item].state) > 0) ? "lightbulb_fill" : "lightbulb"'
+              size: 16
+              style:
+                color: '=(Number.parseInt(items[props.item].state) > 0) ? "#F4E274" : ""'
+                margin-right: 5px
+          - component: Label
+            config:
+              style:
+                font-size: 12px
+                margin-top: 0px
+                padding-right: 5px
+              text: Licht
+          - component: Label
+            config:
+              style:
+                font-size: 12px
+                margin-top: 0px
+              text: =items[props.item].displayState
+              visible: "=(Number.parseInt(items[props.item].state) > 0) ? true : false"
+    - component: f7-block
+      config:
+        style:
+          flex-direction: row
+          left: 9px
+          position: absolute
+          top: 50px
+      slots:
+        default:
+          - component: Label
+            config:
+              style:
+                font-size: 15px
+                font-weight: 600
+                line-height: 1
+                margin-left: 0px
+                margin-top: 2px
+              text: "=props.header ? props.header : 'Set Props'"
+    - component: oh-link
+      config:
+        action: toggle
+        actionCommand: ON
+        actionCommandAlt: OFF
+        actionItem: =props.item
+        style:
+          height: 40px
+          left: 0px
+          position: absolute
+          top: 30px
+          width: 100%
+    - component: oh-link
+      config:
+        action: popup
+        popupOpen: .myPopupOpenDI
+        style:
+          height: 30px
+          left: 0px
+          position: absolute
+          top: 0px
+          width: 100%
+      slots:
+        default:
+          - component: f7-popup
+            config:
+              class: myPopupOpenDI
+              style:
+                --f7-popup-tablet-height: 101px
+                --f7-popup-tablet-width: 70%
+              swipeToClose: true
+            slots:
+              default:
+                - component: widget:Popup_Dimmer
+                  config:
+                    item: =props.item
+                    title: =props.header
