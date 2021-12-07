@@ -1,0 +1,307 @@
+uid: 3d-druck
+tags: []
+props:
+  parameters:
+    - context: item
+      description: Set the Power item here
+      label: Power
+      name: poweritem
+      required: false
+      type: TEXT
+    - context: item
+      description: Set the Light item here
+      label: Light
+      name: lightitem
+      required: false
+      type: TEXT
+    - description: Set the height of the Widget
+      label: Widget Height
+      name: cardheight
+      required: false
+      type: TEXT
+    - description: Name your Printer!
+      label: Printer Name
+      name: printername
+      required: false
+      type: TEXT
+    - context: item
+      description: Set item for Bed Temperature here
+      label: Bed Temperature
+      name: bedtempitem
+      required: false
+      type: TEXT
+    - context: item
+      description: Set item for Hotend Temperature here
+      label: Hotend Temperature
+      name: hotendtempitem
+      required: false
+      type: TEXT
+    - context: item
+      description: Set item for Time Left here
+      label: Time Left
+      name: timeleftitem
+      required: false
+      type: TEXT
+    - context: item
+      description: Set item for Progress here
+      label: Progress
+      name: progressitem
+      required: false
+      type: TEXT
+    - description: Set the url of the live stream here
+      label: Url live stream
+      name: urllivestream
+      required: false
+      type: TEXT
+  parameterGroups: []
+timestamp: Mar 17, 2021, 8:20:29 PM
+component: f7-card
+config:
+  style:
+    overflow: hidden
+    height: '=props.cardheight ? props.cardheight : "300px"'
+    -ms-user-select: none
+    -moz-user-select: none
+    -webkit-user-select: none
+    user-select: none
+    background: black
+    border-radius: var(--weather-card-border-radius)
+    --weather-card-color: "=(!props.fontColor) ? '255,255,255' : props.fontColor"
+    --weather-card-text-shadow-color: "=(!props.textShadowColor) ? '0,0,0' : props.textShadowColor"
+    --weather-card-text-color: rgba(var(--weather-card-color),1)
+    color: var(--weather-card-text-color)
+    --weather-card-border-radius: 20px
+    --weather-font-size-xxsmall: 12px
+    --weather-font-size-xsmall: 14px
+    --weather-font-size-small: 16px
+    --weather-font-size-normal: 18px
+    --weather-font-size-large: 26px
+    --weather-font-size-xlarge: 60px
+    --weather-font-size-xxlarge: 70px
+    --weather-text-shadow-light: 2px 2px rgba(var(--weather-card-text-shadow-color),.15)
+    --weather-text-shadow-strong: 2px 2px rgba(var(--weather-card-text-shadow-color),.35)
+    --weather-text-transform-time: uppercase
+slots:
+  default:
+    - component: f7-block
+      config:
+        class:
+          - no-padding
+          - no-margin
+        style:
+          width: 100%
+          height: 100%
+          position: absolute
+          top: 0
+          left: 0
+      slots:
+        default:
+          - component: f7-row
+            config:
+              width: 100%
+              style:
+                justify-items: center
+            slots:
+              default:
+                - component: f7-col
+                  config:
+                    style:
+                      width: 15%
+                      display: grid
+                      justify-items: center
+                  slots:
+                    default:
+                      - component: f7-row
+                        config:
+                          style:
+                            height: 20%
+                            display: grid
+                            grid-template-columns: 150px 50px
+                            justify-items: center
+                            justify-content: start
+                            margin-top: 15px
+                        slots:
+                          default:
+                            - component: Label
+                              config:
+                                text: '=props.printername ? props.printername : "Name"'
+                                style:
+                                  grid-column: 1
+                                  font-size: 25px
+                                  padding-top: 5px
+                      - component: f7-row
+                        config:
+                          style:
+                            height: 10%
+                            display: grid
+                            grid-template-columns: 20px 120px
+                            justify-items: center
+                            align-items: center
+                            justify-content: start
+                            margin-top: 15px
+                            padding-left: 22px
+                        slots:
+                          default:
+                            - component: f7-icon
+                              config:
+                                f7: wind
+                                size: 20
+                                style:
+                                  grid-column: 1
+                                  color: white
+                                  transform: rotate(-90deg)
+                            - component: f7-icon
+                              config:
+                                f7: equal
+                                size: 40
+                                style:
+                                  grid-column: 1
+                                  color: white
+                                  position: absolute
+                                  transform: scaleY(0.3) scaleX(1.5)
+                                  margin-top: 10px
+                                  padding-right: 40px
+                            - component: Label
+                              config:
+                                text: '=items[props.bedtempitem].state ? items[props.bedtempitem].state + " ℃" : "Name"'
+                                style:
+                                  grid-column: 2
+                                  font-size: 20px
+                      - component: f7-row
+                        config:
+                          style:
+                            height: 10%
+                            display: grid
+                            grid-template-columns: 20px 120px
+                            justify-items: center
+                            align-items: center
+                            justify-content: start
+                            margin-top: 15px
+                            padding-left: 22px
+                        slots:
+                          default:
+                            - component: f7-icon
+                              config:
+                                f7: increase_quotelevel
+                                size: 20
+                                height: 10px
+                                style:
+                                  transform: rotate(90deg)
+                                  width: 5px
+                                  height: 20px
+                                  grid-column: 1
+                                  color: white
+                                  padding-right: 15px
+                            - component: Label
+                              config:
+                                text: '=items[props.hotendtempitem].state ? items[props.hotendtempitem].state + " ℃" : "Name"'
+                                style:
+                                  grid-column: 2
+                                  font-size: 20px
+                      - component: f7-row
+                        config:
+                          style:
+                            height: 10%
+                            display: grid
+                            grid-template-columns: 20px 120px
+                            justify-items: center
+                            align-items: center
+                            justify-content: start
+                            margin-top: 15px
+                            padding-left: 22px
+                        slots:
+                          default:
+                            - component: oh-image
+                              config:
+                                url: https://iconsplace.com/wp-content/uploads/_icons/ffffff/256/png/time-icon-18-256.png
+                                width: 20
+                                height: 20
+                            - component: Label
+                              config:
+                                text: '=items[props.timeleftitem].state == "NULL" ? "not printing" : Math.floor(items[props.timeleftitem].state /3600)+":"+ Math.floor(items[props.timeleftitem].state / 60) + " h"'
+                                style:
+                                  grid-column: 2
+                                  font-size: 20px
+                      - component: f7-row
+                        config:
+                          style:
+                            height: 10%
+                            padding-right: 120px
+                            margin-top: 15px
+                        slots:
+                          default:
+                            - component: f7-gauge
+                              config:
+                                border-color: "#005eff"
+                                type: semicircle
+                                visible: true
+                                value: '=props.progressitem ? (items[props.progressitem].state == "NULL" ? 0 : Math.floor(items[props.progressitem].state / 100)) : 0'
+                                value-text: '=props.progressitem ? (items[props.progressitem].state == "NULL" ? "0 %" : items[props.progressitem].state + " %") : "0"'
+                                value-text-color: "#005eff"
+                                style:
+                                  width: 120px
+                                  position: absolute
+                - component: f7-col
+                  config:
+                    style:
+                      width: 25%
+                      display: grid
+                      justify-items: center
+                  slots:
+                    default:
+                      - component: f7-row
+                        config:
+                          style:
+                            height: 20%
+                            display: grid
+                            grid-template-columns: 50px
+                            justify-items: center
+                            margin-top: 60px
+                            margin-left: 60px
+                        slots:
+                          default:
+                            - component: oh-button
+                              config:
+                                action: toggle
+                                actionItem: =props.poweritem
+                                actionCommand: ON
+                                actionCommandAlt: OFF
+                                iconF7: power
+                                iconSize: 50px
+                                color: '=items[props.poweritem].state === "ON" ? "green": "red"'
+                                style:
+                                  height: 50px
+                            - component: oh-button
+                              config:
+                                action: toggle
+                                actionItem: =props.lightitem
+                                actionCommand: ON
+                                actionCommandAlt: OFF
+                                iconF7: lightbulb
+                                iconSize: 50px
+                                color: '=items[props.lightitem].state === "ON" ? "yellow": "white"'
+                                style:
+                                  height: 50px
+                                  margin-top: 30px
+                - component: f7-col
+                  config:
+                    style:
+                      width: 60%
+                      padding-top: 40px
+                      display: grid
+                      justify-content: center
+                  slots:
+                    default:
+                      - component: oh-image
+                        config:
+                          url: '=props.urllivestream ? props.urllivestream : "https://www.flaticon.com/svg/vstatic/svg/3964/3964391.svg?token=exp=1614265385~hmac=9a01747702e3f44a515d0d898b3f13fc"'
+                          width: 320
+                          height: 230
+    - component: f7-progressbar
+      config:
+        style:
+          height: 10px
+          color: red
+          position: absolute
+        infinite: "=items[props.timeleftitem].state > 0 ? true : false"
+        color: '=items[props.timeleftitem].state > 0 ? "multi" : "red"'
