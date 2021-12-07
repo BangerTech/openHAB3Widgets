@@ -1,0 +1,305 @@
+uid: Card_Room_Popup_3Lights
+tags: []
+props:
+  parameters:
+    - label: Header
+      name: text_header
+      required: false
+      type: TEXT
+    - description: icon name without ".png", located in static/icons/ folder
+      label: Icon
+      name: iconimage
+      required: false
+      type: TEXT
+    - description: HEX or rgba
+      label: Backgroundcolor
+      name: bgcolor
+      required: false
+      type: TEXT
+    - context: item
+      description: select item for state light1
+      label: Item
+      name: status_light1
+      required: false
+      type: TEXT
+    - context: item
+      description: select item for state light2
+      label: Item
+      name: status_light2
+      required: false
+      type: TEXT
+    - context: item
+      description: select item for state light3
+      label: Item
+      name: status_light3
+      required: false
+      type: TEXT
+    - context: item
+      description: select item for temperature
+      label: Item
+      name: temp
+      required: false
+      type: TEXT
+    - context: item
+      description: select item for set temperature
+      label: Item
+      name: settemp
+      required: false
+      type: TEXT
+    - context: item
+      description: select item for humidity
+      label: Item
+      name: humidity
+      required: false
+      type: TEXT
+    - context: item
+      description: select item for state blind1
+      label: Item
+      name: blind1
+      required: false
+      type: TEXT
+    - context: item
+      description: select item for state blind slats1
+      label: Item
+      name: blind_slats1
+      required: false
+      type: TEXT
+    - context: item
+      description: select item for state blind2
+      label: Item
+      name: blind2
+      required: false
+      type: TEXT
+    - context: item
+      description: select item for state blind slats2
+      label: Item
+      name: blind_slats2
+      required: false
+      type: TEXT
+    - context: item
+      description: select item for state blind3
+      label: Item
+      name: blind3
+      required: false
+      type: TEXT
+    - context: item
+      description: select item for state blind slats3
+      label: Item
+      name: blind_slats3
+      required: false
+      type: TEXT
+    - context: item
+      description: select item for door state(s)
+      label: Item
+      name: door_state
+      required: false
+      type: TEXT
+    - description: Page which will be opened as popup
+      label: Page ID
+      name: page
+      required: false
+timestamp: Nov 25, 2021, 12:56:31 PM
+component: f7-card
+config:
+  style:
+    background-color: "=props.bgcolor ? props.bgcolor : ''"
+    border-radius: var(--f7-card-expandable-border-radius)
+    box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.1)
+    class:
+      - padding: 0px
+    height: 100px
+    margin-left: 5px
+    margin-right: 5px
+    noShadow: false
+slots:
+  content:
+    - component: f7-block
+      config:
+        style:
+          left: 45px
+          position: absolute
+          top: -5px
+      slots:
+        default:
+          - component: Label
+            config:
+              style:
+                font-size: 17px
+                font-weight: 600
+                margin-left: 0px
+                margin-top: 0px
+              text: "=props.text_header ? props.text_header : 'Set Props'"
+    - component: f7-block
+      config:
+        style:
+          bottom: -20px
+          left: 5px
+          position: absolute
+      slots:
+        default:
+          - component: oh-link
+            config:
+              iconBadge: "=(items[props.status_light1].state > 0) ? items[props.status_light1].state : ''"
+              iconColor: "=themeOptions.dark === 'dark' ? 'white' : 'orange'"
+              iconF7: "=(items[props.status_light1].state === 'ON' ) ? 'lightbulb_fill' : (items[props.status_light1].state === 'OFF' ) ? 'lightbulb' : (items[props.status_light1].state > 0 ) ? 'lightbulb_fill' : 'lightbulb' "
+              iconSize: 20
+              visible: "=props.status_light1 ? true : false"
+          - component: oh-link
+            config:
+              iconBadge: "=(items[props.status_light2].state > 0) ? items[props.status_light2].state : ''"
+              iconColor: "=themeOptions.dark === 'dark' ? 'white' : 'orange'"
+              iconF7: "=(items[props.status_light2].state === 'ON' ) ? 'lightbulb_fill' : (items[props.status_light2].state === 'OFF' ) ? 'lightbulb' : (items[props.status_light2].state > 0 ) ? 'lightbulb_fill' : 'lightbulb' "
+              iconSize: 20
+              style:
+                left: 50px
+                position: absolute
+              visible: "=props.status_light2 ? true : false"
+          - component: oh-link
+            config:
+              iconBadge: "=(items[props.status_light3].state > 0) ? items[props.status_light3].state : ''"
+              iconColor: "=themeOptions.dark === 'dark' ? 'white' : 'orange'"
+              iconF7: "=(items[props.status_light3].state === 'ON' ) ? 'lightbulb_fill' : (items[props.status_light3].state === 'OFF' ) ? 'lightbulb' : (items[props.status_light3].state > 0 ) ? 'lightbulb_fill' : 'lightbulb' "
+              iconSize: 20
+              style:
+                left: 85px
+                position: absolute
+              visible: "=props.status_light3 ? true : false"
+          - component: oh-link
+            config:
+              iconBadge: "=(props.blind_slats1) ? '' : (items[props.blind1].state > 0 ) ? items[props.blind1].state : ''"
+              iconColor: "=(props.blind_slats1) ? 'gray' : (themeOptions.dark === 'dark') ? 'white' : 'black'"
+              iconF7: "=items[props.blind1].state > 50 ? 'app_fill' : 'app'"
+              iconSize: 24
+              style:
+                left: 120px
+                position: absolute
+              visible: "=props.blind1 ? true : false"
+          - component: oh-link
+            config:
+              iconColor: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
+              iconF7: "=(items[props.blind_slats1].state === '0' ) ?  'arrow_down_square' : 'arrow_down_right_square'"
+              iconSize: 24
+              style:
+                left: 120px
+                position: absolute
+              visible: "=(props.blind_slats1) && (items[props.blind1].state > 50) && (items[props.blind_slats1].state < 30 ) ? true : false"
+          - component: oh-link
+            config:
+              iconColor: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
+              iconF7: "=(items[props.blind_slats1].state === '50' ) ?  'arrow_right_square' :  'arrow_up_square'"
+              iconSize: 24
+              style:
+                left: 120px
+                position: absolute
+              visible: "=(props.blind_slats1) && (items[props.blind1].state > 50) && (items[props.blind_slats1].state > 30 ) ? true : false"
+          - component: oh-link
+            config:
+              iconBadge: "=(props.blind_slats2) ? '' : (items[props.blind2].state > 0 ) ? items[props.blind2].state : ''"
+              iconColor: "=(props.blind_slats2) ? 'gray' : (themeOptions.dark === 'dark') ? 'white' : 'black'"
+              iconF7: "=items[props.blind2].state > 50 ? 'app_fill' : 'app'"
+              iconSize: 24
+              style:
+                left: 155px
+                position: absolute
+              visible: "=props.blind2 ? true : false"
+          - component: oh-link
+            config:
+              iconColor: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
+              iconF7: "=(items[props.blind_slats2].state === '0' ) ?  'arrow_down_square' : 'arrow_down_right_square'"
+              iconSize: 24
+              style:
+                left: 155px
+                position: absolute
+              visible: "=(props.blind_slats2) && (items[props.blind2].state > 50) && (items[props.blind_slats2].state < 30 ) ? true : false"
+          - component: oh-link
+            config:
+              iconColor: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
+              iconF7: "=(items[props.blind_slats2].state === '50' ) ?  'arrow_right_square' :  'arrow_up_square'"
+              iconSize: 24
+              style:
+                left: 155px
+                position: absolute
+              visible: "=(props.blind_slats2) && (items[props.blind2].state > 50) && (items[props.blind_slats2].state > 30 ) ? true : false"
+          - component: oh-link
+            config:
+              iconBadge: "=(props.blind_slats3) ? '' : (items[props.blind3].state > 0 ) ? items[props.blind3].state : ''"
+              iconColor: "=(props.blind_slats3) ? 'gray' : (themeOptions.dark === 'dark') ? 'white' : 'black'"
+              iconF7: "=items[props.blind3].state > 50 ? 'app_fill' : 'app'"
+              iconSize: 22
+              style:
+                left: 190px
+                position: absolute
+              visible: "=props.blind3 ? true : false"
+          - component: oh-link
+            config:
+              iconColor: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
+              iconF7: "=(items[props.blind_slats3].state === '0' ) ?  'arrow_down_square' : 'arrow_down_right_square'"
+              iconSize: 24
+              style:
+                left: 190px
+                position: absolute
+              visible: "=(props.blind_slats3) && (items[props.blind3].state > 50) && (items[props.blind_slats3].state < 30 ) ? true : false"
+          - component: oh-link
+            config:
+              iconColor: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
+              iconF7: "=(items[props.blind_slats3].state === '50' ) ?  'arrow_right_square' :  'arrow_up_square'"
+              iconSize: 24
+              style:
+                left: 190px
+                position: absolute
+              visible: "=(props.blind_slats3) && (items[props.blind3].state > 50) && (items[props.blind_slats3].state > 30 ) ? true : false"
+          - component: oh-icon
+            config:
+              icon: "=items[props.door_state].state === 'OPEN' ? 'door-open' : 'door-closed'"
+              style:
+                bottom: 0px
+                height: 24px
+                left: 120px
+                position: absolute
+              visible: "=props.door_state ? true : false"
+    - component: f7-block
+      config:
+        style:
+          bottom: -50px
+          left: 5px
+          position: absolute
+      slots:
+        default:
+          - component: f7-chip
+            config:
+              iconColor: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
+              iconF7: thermometer
+              iconSize: 18
+              style:
+                --f7-chip-bg-color: rgba(255, 255, 255, 0)
+              text: "=(items[props.temp].displayState  ? items[props.temp].displayState : items[props.temp].state) +  (props.settemp ? ' (' + items[props.settemp].state + ')' : '')"
+              visible: "=props.temp ? true : false"
+          - component: f7-chip
+            config:
+              iconColor: "=themeOptions.dark === 'dark' ? 'white' : 'black'"
+              iconF7: drop
+              iconSize: 18
+              style:
+                --f7-chip-bg-color: rgba(255, 255, 255, 0)
+              text: =items[props.humidity].state + '%'
+              visible: "=props.humidity ? true : false"
+    - component: oh-image
+      config:
+        style:
+          height: 25px
+          left: 10px
+          opacity: 0.7
+          position: absolute
+          top: 10px
+        url: ='/static/icons/' + props.iconimage + '.png'
+        visible: "=props.iconimage ? true : false"
+    - component: oh-link
+      config:
+        action: popup
+        actionModal: ='page:' + props.page
+        style:
+          height: 110px
+          left: 0px
+          position: absolute
+          top: 0px
+          width: 100%
