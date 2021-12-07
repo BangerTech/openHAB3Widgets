@@ -1,0 +1,89 @@
+uid: Connection_Card_1
+tags:
+  - status page swipe
+props:
+  parameters: []
+  parameterGroups: []
+timestamp: Nov 25, 2021, 2:25:55 PM
+component: oh-swiper-card
+config:
+  navigation: true
+  noBorder: false
+  noShadow: true
+  pagination: false
+  scrollbar: false
+  style:
+    height: "=(props.bigCard) ? '' : '160px'"
+    overflow: hidden
+slots:
+  default:
+    - component: oh-label-card
+      config:
+        background: "linear-gradient(to bottom, #003366 0%, #00ffff 100%)"
+        fontSize: 40px
+        fontWeight: bold
+        icon: f7:download_circle_fill
+        item: SpeedtestBinding_DownloadBandwidth
+        style:
+          --card-content: padding
+          -moz-user-select: none
+          -ms-user-select: none
+          -webkit-user-select: none
+          background: "linear-gradient(to bottom, #003366 0%, #00ffff 100%)"
+          border-radius: 10px
+          height: 100%
+          left: 0
+          max-height: "=(props.bigCard) ? '' : '160px'"
+          overflow: hidden
+          position: absolute
+          top: 0
+          user-select: none
+          width: 100%
+        trendItem: SpeedtestBinding_DownloadBandwidth
+        vertical: true
+    - component: oh-label-card
+      config:
+        background: "linear-gradient(to bottom, #003366 0%, #00ffff 100%)"
+        fontSize: 40px
+        fontWeight: bold
+        icon: f7:upload_circle_fill
+        item: SpeedtestBinding_UploadBandwidth
+        style:
+          -moz-user-select: none
+          -ms-user-select: none
+          -webkit-user-select: none
+          background: "linear-gradient(to bottom, #003366 0%, #00ffff 100%)"
+          border-radius: 10px
+          height: 100%
+          left: 0
+          max-height: "=(props.bigCard) ? '' : '160px'"
+          overflow: hidden
+          position: absolute
+          top: 0
+          user-select: none
+          width: 100%
+        trendItem: SpeedtestBinding_UploadBandwidth
+        vertical: true
+    - component: oh-label-card
+      config:
+        background: "linear-gradient(to bottom, #003366 0%, #00ffff 100%)"
+        fontSize: 40px
+        fontWeight: bold
+        icon: f7:timer_fill
+        item: SpeedtestBinding_Latency
+        style:
+          -moz-user-select: none
+          -ms-user-select: none
+          -webkit-user-select: none
+          background: "linear-gradient(to bottom, #003366 0%, #00ffff 100%)"
+          border-radius: 10px
+          height: 100%
+          left: 0
+          max-height: "=(props.bigCard) ? '' : '160px'"
+          overflow: hidden
+          position: absolute
+          top: 0
+          user-select: none
+          width: 100%
+        trendItem: SpeedtestBinding_Latency
+        vertical: true
