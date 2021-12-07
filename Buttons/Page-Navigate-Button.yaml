@@ -1,0 +1,111 @@
+uid: Page-Navigate-Button
+tags:
+  - switch Pages
+props:
+  parameters:
+    - description: Set the Headline for the first state
+      label: Headline
+      name: headline
+      required: false
+      type: TEXT
+    - label: Page
+      name: page
+      required: true
+      type: TEXT
+    - label: Icon
+      name: icon
+      required: false
+      type: TEXT
+    - label: Icon  Color
+      name: iconcolor
+      required: false
+      type: TEXT
+    - label: Headline Color
+      name: headlinecolor
+      required: false
+      type: TEXT
+      groupName: styling
+    - label: Headline Weight
+      name: headlineweight
+      required: false
+      type: TEXT
+      groupName: styling
+    - label: Headline Size
+      name: headlinesize
+      required: false
+      type: TEXT
+      groupName: styling
+    - label: Background
+      name: background
+      required: false
+      type: TEXT
+      groupName: styling
+    - label: Card height
+      name: cardheight
+      required: false
+      type: TEXT
+      groupName: styling
+    - label: Card width
+      name: cardwidth
+      required: false
+      type: TEXT
+      groupName: styling
+    - label: Icon size
+      name: iconsize
+      required: false
+      type: TEXT
+      groupName: styling
+  parameterGroups:
+    - name: styling
+      label: Styling
+timestamp: Nov 25, 2021, 2:25:34 PM
+component: f7-card
+config:
+  style:
+    background: '=(props.background) ? props.background : "linear-gradient(to bottom, #003366 0%, #00ffff 100%)"'
+    border-radius: var(--f7-card-expandable-border-radius)
+    height: '=props.cardheight ? props.cardheight : "8.5em"'
+    margin-left: auto;
+    margin-right: auto;
+    noShadow: false
+    padding: 0px
+    width: '=props.cardwidth ? props.cardwidth : "8.5em"'
+slots:
+  default:
+    - component: f7-block
+      config:
+        style:
+          align-items: center
+          display: grid
+          grid-template-rows: 1fr auto auto 1fr
+          height: 100%
+          justify-items: center
+      slots:
+        default:
+          - component: Label
+          - component: Label
+            config:
+              style:
+                color: '=(props.headlinecolor) ? props.headlinecolor : "white"'
+                font-size: '=(props.headlinesize) ? props.headlinesize: "13px"'
+                font-weight: '=(props.headlineweight) ? props.headlineweight : "normal"'
+                padding: 3px
+              text: '=props.headline ? props.headline : "Headline"'
+          - component: f7-icon
+            config:
+              f7: '=props.icon ? props.icon : "house"'
+              size: '=props.iconsize ? props.iconsize: "65px"'
+              style:
+                color: "=props.iconcolor ? props.iconcolor : white"
+                padding: 3px
+    - component: oh-link
+      config:
+        action: navigate
+        actionPage: '=props.page ? "page:" + props.page : "page:Schnellzugriff"'
+        style:
+          actionPosition: center
+          height: 100%
+          left: 0
+          position: absolute
+          top: 0
+          width: 100%
