@@ -1,0 +1,97 @@
+uid: Card_Battery_State
+tags:
+  - homekit-like
+props:
+  parameters:
+    - description: The headline
+      label: Label-description
+      name: prop1
+      required: true
+      type: TEXT
+    - description: The size of the Font
+      label: Font-Size
+      name: fontsize
+      required: true
+      type: TEXT
+    - description: the oh icon name
+      label: f7 icon name
+      name: prop2
+      required: false
+      type: TEXT
+    - context: item
+      description: Status of the Device
+      label: Status
+      name: item
+      required: false
+      type: TEXT
+    - context: item
+      description: Battery status of the device
+      label: Battery
+      name: item2
+      required: false
+      type: TEXT
+  parameterGroups: []
+timestamp: Feb 18, 2021, 9:33:17 PM
+component: f7-card
+config:
+  style:
+    noShadow: false
+    class:
+      - padding: 0px
+    border-radius: var(--f7-card-expandable-border-radius)
+    box-shadow: var(--f7-card-expandable-box-shadow)
+    background-color: '=(items[props.item].state == "OPEN") ? "white" : "rgba(228,228,228,0.9)"'
+    height: 8.5em
+slots:
+  content:
+    - component: f7-block
+      config:
+        style:
+          margin: 1px
+          padding: 1px
+          display: flex
+          flex-direction: column
+          align-items: start
+      slots:
+        default:
+          - component: f7-icon
+            config:
+              f7: '=(items[props.item2].state === "OFF") ? "battery_100" : "battery_25"'
+              size: 25
+              color: '=(items[props.item2].state == "OFF") ? "green" : "red"'
+              style:
+                opacity: 0.5
+                position: absolute
+                top: -11px
+                right: -5px
+          - component: oh-icon
+            config:
+              icon: =props.prop2
+              height: 38
+              style:
+                filter: grayscale()
+                opacity: 0.7
+                position: absolute
+                top: -5px
+                left: -5px
+                margin-top: -5px
+          - component: Label
+            config:
+              text: =props.prop1
+              style:
+                font-size: =props.fontsize + "px"
+                font-weight: 500
+                line-height: 1.1
+                position: relative
+                margin-left: 0px
+                margin-top: 44px
+                color: '=(items[props.item].state == "OPEN") ? "black" : "rgb(0,0,0,0.5)"'
+          - component: Label
+            config:
+              text: =items[props.item].displayState
+              style:
+                margin-left: 0px
+                margin-top: 2px
+                font-size: 14px
+                font-weight: 500
+                color: '=(items[props.item].state == "OPEN") ? "red" : "rgb(0,0,0,0.5)"'
