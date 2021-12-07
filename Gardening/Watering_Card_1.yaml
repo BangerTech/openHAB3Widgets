@@ -1,0 +1,414 @@
+uid: Watering_Card_1
+tags: []
+props:
+  parameters:
+    - description: A text prop
+      label: Prop 1
+      name: prop1
+      required: false
+      type: TEXT
+    - context: item
+      description: An item to control
+      label: Item
+      name: item
+      required: false
+      type: TEXT
+  parameterGroups: []
+timestamp: Nov 25, 2021, 5:02:45 PM
+component: f7-card
+config:
+  backdrop: true
+  class:
+    - no-padding
+  expandable: true
+  style:
+    box-shadow: var(--f7-card-expandable-box-shadow)
+    height: 200px
+    margin: 10px
+  swipeToClose: true
+slots:
+  default:
+    - component: oh-button
+      config:
+        class:
+          - cell-open-button
+          - card-opened-fade-out
+          - float-right
+        color: black
+        iconF7: gear
+        iconSize: 30px
+        style:
+          padding-bottom: 35px
+          padding-top: 10px
+          position: absolute
+          right: 0
+          top: 0
+          z-index: 999
+    - component: oh-button
+      config:
+        class:
+          - card-opened-fade-in
+          - cell-close-button
+          - float-right
+        color: black
+        iconF7: xmark_circle_fill
+        iconSize: 30px
+        style:
+          padding-bottom: 35px
+          padding-top: 10px
+          position: absolute
+          right: 0
+          top: 0
+          z-index: 999
+    - component: oh-link
+      config:
+        action: toggle
+        actionCommand: ON
+        actionCommandAlt: OFF
+        actionItem: Bewaesserung_Rasen_Schalter
+        class:
+          - card-prevent-open
+        style:
+          height: 200px
+          left: 0
+          position: absolute
+          top: 0
+          width: 100%
+          z-index: 0
+    - component: f7-card-content
+      config:
+        style:
+          width: 100%
+      slots:
+        default:
+          - component: f7-icon
+            config:
+              color: green
+              material: grass
+              size: 80px
+              style:
+                opacity: 40%
+                position: absolute
+                right: 3%
+                top: 120px
+          - component: f7-block
+            config:
+              style:
+                height: 200px
+                margin: 0px
+            slots:
+              default:
+                - component: f7-row
+                  config:
+                    class:
+                      - display-flex
+                      - align-items-center
+                      - justify-content-space-between
+                    style:
+                      flex-wrap: nowrap
+                      height: 75px
+                      weight: 100%
+                      white-space: nowrap
+                  slots:
+                    default:
+                      - component: f7-col
+                        config:
+                          class:
+                            - display-flex
+                            - flex-direction-column
+                            - align-items-flex-start
+                          style:
+                            height: 75px
+                            width: auto
+                        slots:
+                          default:
+                            - component: Label
+                              config:
+                                style:
+                                  font-size: 25px
+                                  font-weight: 600
+                                text: Büsche hinten
+                            - component: f7-chip
+                              config:
+                                color: "=items.Bewaesserung_Rasen_Schalter.state === 'ON' ? 'green' : 'gray'"
+                                text: "=items.Bewaesserung_Rasen_Schalter.state === 'ON' ? 'Bewässerung aktiv' : 'AUS'"
+                      - component: f7-col
+                        config:
+                          class:
+                            - display-flex
+                            - flex-direction-column
+                          style:
+                            margin-top: 15px
+                            width: auto
+                        slots:
+                          default:
+                            - component: oh-gauge
+                              config:
+                                borderBgColor: "#d2d2d2"
+                                borderColor: "#4287f5"
+                                borderWidth: 20
+                                labelText: 20 min
+                                max: 90
+                                min: 0
+                                size: 100
+                                style:
+                                  width: 100%
+                                type: semicircle
+                                value: 40
+                                visible: "=items.Bewaesserung_Rasen_Schalter.state === 'ON' ? true : false"
+                - component: f7-row
+                  config:
+                    class:
+                      - display-flex
+                      - flex-direction-row
+                      - align-items-flex-start
+                      - justify-content-flex-start
+                    style:
+                      flex-wrap: nowrap
+                      height: 30px
+                      white-space: nowrap
+                      width: 16%
+                  slots:
+                    default:
+                      - component: f7-icon
+                        config:
+                          color: gray
+                          f7: cloud_rain
+                          size: 20px
+                          style:
+                            padding-right: 5px
+                          visible: "=items.Bewaesserung_Rasen_Regenautomatik.state === 'ON' ? true : false"
+                      - component: f7-icon
+                        config:
+                          color: gray
+                          f7: umbrella
+                          size: 20px
+                          style:
+                            padding-right: 5px
+                          visible: "=Number.parseInt(items.item_Netatmo_Regen_Niederschlag.displayState) >= 1 ? true : false"
+                - component: f7-row
+                  config:
+                    class:
+                      - display-flex
+                      - flex-direction-row
+                      - align-items-flex-start
+                    style:
+                      flex-wrap: nowrap
+                      height: 10px
+                      width: 180px
+                  slots:
+                    default:
+                      - component: f7-col
+                        config:
+                          class:
+                            - display-flex
+                            - flex-direction-column
+                            - align-items-center
+                          style:
+                            width: 40%
+                        slots: {}
+                - component: f7-row
+                  config:
+                    style:
+                      align-content: flex-end
+                      height: 50px
+                      margin-top: 10px
+                  slots:
+                    default:
+                      - component: f7-col
+                        config:
+                          class:
+                            - display-flex
+                            - flex-direction-column
+                            - align-items-flex-start
+                          style:
+                            align-content: flex-start
+                            flex-wrap: nowrap
+                            width: 100%
+                        slots:
+                          default:
+                            - component: f7-row
+                              config:
+                                style:
+                                  flex-wrap: nowrap
+                              slots:
+                                default:
+                                  - component: f7-icon
+                                    config:
+                                      color: blue
+                                      f7: alarm
+                                      size: 20px
+                                      style:
+                                        margin-top: 0px
+                                      visible: "=items.Bewaesserung_Rasen_Timer.state === 'ON' ? true : false"
+                                  - component: Label
+                                    config:
+                                      style:
+                                        font-size: 14px
+                                        font-weight: 600
+                                        margin-left: 5px
+                                      text: 19. April, 18:30
+                                      visible: "=items.Bewaesserung_Rasen_Timer.state === 'ON' ? true : false"
+                                  - component: f7-icon
+                                    config:
+                                      color: blue
+                                      f7: timer
+                                      size: 20px
+                                      style:
+                                        margin-left: 10px
+                                        margin-top: 0px
+                                      visible: "=items.Bewaesserung_Rasen_Timer.state === 'ON' ? true : false"
+                                  - component: Label
+                                    config:
+                                      style:
+                                        font-size: 14px
+                                        font-weight: 600
+                                        margin-left: 5px
+                                      text: 35min
+                                      visible: "=items.Bewaesserung_Rasen_Timer.state === 'ON' ? true : false"
+                            - component: f7-row
+                              config:
+                                style:
+                                  flex-wrap: nowrap
+                                  margin-top: 5px
+                              slots:
+                                default:
+                                  - component: f7-icon
+                                    config:
+                                      color: gray
+                                      material: restore
+                                      size: 18px
+                                      style:
+                                        margin-left: 0px
+                                        margin-top: 0px
+                                  - component: Label
+                                    config:
+                                      style:
+                                        color: gray
+                                        font-size: 12px
+                                        margin-left: 8px
+                                      text: 14. April, 18:30
+                                  - component: f7-icon
+                                    config:
+                                      color: gray
+                                      f7: timer
+                                      size: 15px
+                                      style:
+                                        margin-left: 10px
+                                        margin-top: 2px
+                                  - component: Label
+                                    config:
+                                      style:
+                                        color: gray
+                                        font-size: 12px
+                                        margin-left: 3px
+                                      text: 20min
+          - component: f7-block
+            config:
+              class:
+                - card-prevent-open
+                - card-content-padding
+              style:
+                height: 300px
+            slots:
+              default:
+                - component: oh-list
+                  config:
+                    class:
+                      - padding
+                  slots:
+                    default:
+                      - component: oh-stepper-item
+                        config:
+                          autorepeat: true
+                          autorepeatDynamic: false
+                          color: blue
+                          icon: f7:timer
+                          item: Bewaesserung_Rasen_Ausschalt_Timer
+                          max: 90
+                          min: 0
+                          raised: true
+                          round: true
+                          title: Ausschalt Timer (min)
+                      - component: Label
+                        config:
+                          style:
+                            border-bottom: 1px solid grey
+                            color: gray
+                            font-weight: 600
+                            margin-top: 10px
+                            padding: 7px
+                          text: =props.Title?props.Title:"Timer Settings"
+                      - component: oh-toggle-item
+                        config:
+                          color: green
+                          icon: f7:alarm
+                          item: Bewaesserung_Rasen_Timer
+                          title: Timer
+                      - component: oh-input-item
+                        config:
+                          calendarParams:
+                            dateFormat:
+                              day: numeric
+                              hour: numeric
+                              minute: numeric
+                              month: short
+                            timePicker: true
+                          item: Bewaesserung_Rasen_Timer_Startzeit
+                          outline: false
+                          sendButton: true
+                          style:
+                            --f7-input-bg-color: "#ededed"
+                          title: Startzeit
+                          type: datepicker
+                      - component: oh-stepper-item
+                        config:
+                          autorepeat: true
+                          autorepeatDynamic: false
+                          color: blue
+                          icon: f7:timer
+                          item: Bewaesserung_Rasen_Timer_Laufzeit
+                          max: 90
+                          min: 0
+                          raised: true
+                          round: true
+                          title: Laufzeit (min)
+                      - component: oh-stepper-item
+                        config:
+                          autorepeat: true
+                          autorepeatDynamic: false
+                          color: blue
+                          icon: f7:arrow_2_circlepath
+                          item: Bewaesserung_Rasen_Interval
+                          max: 90
+                          min: 0
+                          raised: true
+                          round: true
+                          title: Interval (Tage)
+                      - component: Label
+                        config:
+                          style:
+                            border-bottom: 1px solid grey
+                            color: gray
+                            font-weight: 600
+                            margin-top: 10px
+                            padding: 7px
+                          text: =props.Title?props.Title:"Wettersteuerung"
+                      - component: oh-toggle-item
+                        config:
+                          color: green
+                          icon: f7:cloud_rain
+                          item: Bewaesserung_Rasen_Regenautomatik
+                          title: Regenautomatik
+                      - component: oh-stepper-item
+                        config:
+                          autorepeat: true
+                          autorepeatDynamic: false
+                          color: blue
+                          icon: f7:chart_bar
+                          item: Bewaesserung_Rasen_Regenautomatik_Grenzwert
+                          max: 90
+                          min: 0
+                          raised: true
+                          round: true
+                          title: Grenzwert Regen (mm)
