@@ -1,0 +1,112 @@
+uid: 4way-Button
+tags:
+  - 4er Button
+props:
+  parameters:
+    - label: Header
+      name: text_header
+      required: false
+      type: TEXT
+    - description: icon name without ".png", located in static/icons/ folder
+      label: Icon
+      name: iconimage
+      required: false
+      type: TEXT
+    - label: Button 1
+      name: Button1
+      required: false
+      type: TEXT
+    - label: Button 2
+      name: Button2
+      required: false
+      type: TEXT
+    - label: Button 3
+      name: Button3
+      required: false
+      type: TEXT
+    - label: Button 4
+      name: Button4
+      required: false
+      type: TEXT
+    - context: item
+      label: Item
+      name: item
+      required: false
+      type: TEXT
+    - label: Backgroundcolor
+      name: bgcolor
+      required: false
+      type: TEXT
+timestamp: Nov 25, 2021, 2:15:12 PM
+component: f7-card
+config:
+  style:
+    background-color: '=(props.bgcolor) ? props.bgcolor : ""'
+    border-radius: var(--f7-card-expandable-border-radius)
+    box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.1)
+    class:
+      - padding: 0px
+    height: 100px
+    margin-left: 5px
+    margin-right: 5px
+    noShadow: false
+slots:
+  default:
+    - component: Label
+      config:
+        style:
+          font-size: 17px
+          font-weight: 600
+          margin-left: 50px
+          margin-top: 0px
+          padding-bottom: 0px
+          padding-top: 10px
+        text: '=(props.text_header) ? props.text_header : "Header"'
+    - component: f7-card-content
+      slots:
+        default:
+          - component: f7-segmented
+            config:
+              raised: true
+              round: false
+              strong: false
+            slots:
+              default:
+                - component: oh-button
+                  config:
+                    action: command
+                    actionCommand: 1
+                    actionItem: =props.item
+                    active: "=(items[props.item].state === '1') ? true : false"
+                    text: '=(props.Button1) ? props.Button1 : "Option1"'
+                - component: oh-button
+                  config:
+                    action: command
+                    actionCommand: 2
+                    actionItem: =(props.item)
+                    active: "=(items[props.item].state === '2') ? true : false"
+                    text: '=(props.Button2) ? props.Button2 : "Option2"'
+                - component: oh-button
+                  config:
+                    action: command
+                    actionCommand: 3
+                    actionItem: =(props.item)
+                    active: "=(items[props.item].state === '3') ? true : false"
+                    text: '=(props.Button3) ? props.Button3 : "Option3"'
+                - component: oh-button
+                  config:
+                    action: command
+                    actionCommand: 4
+                    actionItem: =(props.item)
+                    active: "=(items[props.item].state === '4') ? true : false"
+                    text: '=(props.Button4) ? props.Button4 : "Option4"'
+    - component: oh-image
+      config:
+        style:
+          height: 25px
+          left: 10px
+          opacity: 0.7
+          position: absolute
+          top: 10px
+        url: ='/static/icons/' + props.iconimage + '.png'
+        visible: "=props.iconimage ? true : false"
