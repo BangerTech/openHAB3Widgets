@@ -1,0 +1,35 @@
+uid: Card_Temp_1
+tags: []
+props:
+  parameters:
+    - context: item
+      description: Item Temperatur
+      label: Item Temp
+      name: itemtemp
+      required: false
+      type: TEXT
+    - context: item
+      description: Item Humidity
+      label: Item Hum.
+      name: itemhum
+      required: false
+      type: TEXT
+    - description: Headline
+      label: Headline
+      name: headline
+      required: false
+      type: TEXT
+timestamp: Feb 18, 2021, 10:10:33 AM
+component: oh-label-cell
+config:
+  header: '=(props.headline) ? props.headline : "Headline"'
+  item: =props.itemtemp
+  trendItem: =props.itemtemp
+  action: group
+  actionGroupPopupItem: WZ_Klima
+  icon: f7:thermometer
+  subtitle: =items.HM_WZ_Heizung_ActProfile.displayState
+  footer: ="Luftfeuchtigkeit " + items[props.itemhum].displayState
+  expandable: false
+  style:
+    background: '=(items.[props.itemhum].displayState > 10) ? "red" : "blue"'
