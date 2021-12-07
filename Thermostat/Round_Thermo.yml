@@ -1,0 +1,532 @@
+uid: Round_Thermo
+tags: []
+props:
+  parameters:
+    - description: eg. living room
+      label: location
+      name: location
+      required: false
+      type: TEXT
+    - description: Visual size of the control in px (default 400)
+      label: size [px]
+      name: size
+      required: false
+      type: TEXT
+    - description: Minimum value
+      label: minTemp
+      name: minTemp
+      required: true
+      type: TEXT
+    - description: Maximum value
+      label: maxTemp
+      name: maxTemp
+      required: true
+    - context: item
+      description: Item to control
+      label: Set point Item
+      name: setPointItem
+      required: true
+      type: TEXT
+    - context: item
+      label: Item for current temperature
+      name: currentPointItem
+      required: true
+      type: TEXT
+    - context: item
+      label: Item to toggle something
+      name: toggleItem
+      required: false
+      type: TEXT
+    - description: Control item unit eg °C
+      label: unit
+      name: unit
+      required: false
+      type: TEXT
+    - label: Main-Color Thermostat
+      name: colorThermostat
+      required: false
+      type: TEXT
+      groupName: colors
+      advanced: true
+    - label: Color control ring
+      name: colorControlRing
+      required: false
+      type: TEXT
+      groupName: colors
+      advanced: true
+    - label: Color buttons
+      name: colorButton
+      required: false
+      type: TEXT
+      groupName: colors
+      advanced: true
+    - label: Color center
+      name: colorCenter
+      required: false
+      type: TEXT
+      groupName: colors
+      advanced: true
+    - label: Color Typo
+      name: colorTypo
+      required: false
+      type: TEXT
+      groupName: colors
+      advanced: true
+    - label: Color setPoint Marker
+      name: colorSetMarker
+      required: false
+      type: TEXT
+      groupName: colors
+      advanced: true
+    - label: Color currentPoint Marker
+      name: colorCurrentMarker
+      required: false
+      type: TEXT
+      groupName: colors
+      advanced: true
+    - label: Color bar linear gradient startPoint
+      name: colorBarStartPoint
+      required: false
+      type: TEXT
+      groupName: colors
+      advanced: true
+    - label: Color bar linear gradient endPoint
+      name: colorBarEndPoint
+      required: false
+      type: TEXT
+      groupName: colors
+      advanced: true
+  parameterGroups:
+    - name: colors
+      label: Color-Settings
+timestamp: Feb 27, 2021, 8:23:58 PM
+component: f7-card
+config:
+  style:
+    width: "=props.size ? (Number(props.size)+60)+'px' : '460px'"
+    height: "=props.size ? (Number(props.size)+60)+'px' : '460px'"
+    background: "=props.colorThermostat ? props.colorThermostat : 'var(--f7-toggle-inactive-color)'"
+    border-radius: 50%
+slots:
+  default:
+    - component: f7-card-content
+      slots:
+        default:
+          - component: f7-row
+            config:
+              resizableFixed: true
+              resizable-absolute: true
+              class:
+                - justify-content-center
+            slots:
+              default:
+                - component: f7-block
+                  config:
+                    class: thermostat
+                    style:
+                      flex-shrink: 0
+                      --f7-block-margin-vertical: 0px
+                      --f7-block-padding-vertical: 0px
+                      --f7-block-padding-horizontal: 0px
+                      padding-left: 0px
+                      width: "=props.size ? Number(props.size)+'px' : '400px'"
+                      height: "=props.size ? Number(props.size)+'px' : '400px'"
+                      background: "=props.colorThermostat ? props.colorThermostat : 'var(--f7-toggle-inactive-color)'"
+                      border-radius: 50%
+                      border: 2px solid rgb(64, 60, 77)
+                  slots:
+                    default:
+                      - component: f7-block
+                        config:
+                          class: bar
+                          style:
+                            margin-top: 0px
+                            position: absolute
+                            width: "=props.size ? (Number(props.size)*0.89) +'px' : '356px'"
+                            height: "=props.size ? (Number(props.size)*0.89) +'px' : '356px'"
+                            top: 50%
+                            left: 50%
+                            transform: translate(-50%, -50%)
+                            border-radius: 50%
+                        slots:
+                          default:
+                            - component: f7-block
+                              config:
+                                class: inner_bar
+                                style:
+                                  margin-top: 0
+                                  position: absolute
+                                  top: 50%
+                                  left: 50%
+                                  transform: translate(-50%, -50%)
+                                  width: "=props.size ? (Number(props.size)*0.86) +'px' : '344px'"
+                                  height: "=props.size ? (Number(props.size)*0.86) +'px' : '344px'"
+                                  border-radius: 100%
+                                  background-color: "=props.colorThermostat ? props.colorThermostat : 'var(--f7-toggle-inactive-color)'"
+                                  z-index: 4 !important
+                              slots:
+                                default:
+                                  - component: f7-block
+                                    config:
+                                      style:
+                                        content: ""
+                                        display: block
+                                        position: absolute
+                                        width: 0
+                                        height: 0
+                                        border-top: "=props.size ? (Number(props.size)*0.175) +'px solid' : '70px solid'"
+                                        border-left: "=props.size ? (Number(props.size)*0.175) +'px solid transparent' : '70px solid transparent'"
+                                        border-right: "=props.size ? (Number(props.size)*0.175) +'px solid transparent' : '70px solid transparent'"
+                                        border-bottom: "=props.size ? (Number(props.size)*0.375) +'px solid ' + (props.colorThermostat ? props.colorThermostat : 'var(--f7-toggle-inactive-color)') : '150px solid ' + (props.colorThermostat ? props.colorThermostat : 'var(--f7-toggle-inactive-color)')"
+                                        bottom: "=props.size ? '-7px' : '-7px'"
+                                        left: 50%
+                                        transform: translate(-50%)
+                            - component: f7-block
+                              config:
+                                class: hold left
+                                style:
+                                  margin-top: 0px
+                                  position: absolute
+                                  width: 100%
+                                  height: 100%
+                                  clip: "=props.size ? 'rect(0px, ' + (Number(props.size)*0.89) +'px, ' + (Number(props.size)*0.89) +'px, ' + (Number(props.size)*0.89/2) + 'px)' : 'rect(0px, 356px, 356px, 178px)'"
+                                  border-radius: 100%
+                                  background-color: rgb(58, 55, 73)
+                              slots:
+                                default:
+                                  - component: f7-block
+                                    config:
+                                      class: fill fill1
+                                      style:
+                                        margin-top: 0px
+                                        position: absolute
+                                        width: 100%
+                                        height: 100%
+                                        border-radius: 100%
+                                        clip: "=props.size ? 'rect(0px, '+ (Number(props.size)*0.89/2) + 'px, ' + (Number(props.size)*0.89) + 'px, 0px)' : 'rect(0px, 178px, 356px, 0px)'"
+                                        background: "=props.colorBarStartPoint && props.colorBarEndPoint ? '-webkit-linear-gradient(top, ' + props.colorBarEndPoint + ' 20%,' + props.colorBarEndPoint + ' 100%)' : '-webkit-linear-gradient(top, rgb(255, 73, 0) 20%,rgb(255, 73, 0) 100%)'"
+                                        z-index: 1 !important
+                                        animation: left 0.3s linear both
+                                        animation-delay: 1s
+                                        transition: transform 0.6s
+                                        transform: "=(items[props.setPointItem].state.split(' ')[0] >= (((Number(props.maxTemp) - Number(props.minTemp)) / 2) + Number(props.minTemp)) && items[props.setPointItem].state.split(' ')[0] <= Number(props.maxTemp) ? 'rotate('+(320/(Number(props.maxTemp)-Number(props.minTemp))*(items[props.setPointItem].state.split(' ')[0]-Number(props.minTemp))-160)+'deg)' : (items[props.setPointItem].state.split(' ')[0] > Number(props.maxTemp)) ? 'rotate(180deg)' : '')"
+                            - component: f7-block
+                              config:
+                                class: hold right
+                                style:
+                                  margin-top: 0px
+                                  position: absolute
+                                  width: 100%
+                                  height: 100%
+                                  clip: "=props.size ? 'rect(0px, ' + (Number(props.size)*0.89) + 'px, ' + (Number(props.size)*0.89) + 'px, ' + (Number(props.size)*0.89/2) + 'px)' : 'rect(0px, 356px, 356px, 178px)'"
+                                  border-radius: 100%
+                                  background-color: rgb(58, 55, 73)
+                                  z-index: 3 !important
+                                  transform: rotate(180deg)
+                              slots:
+                                default:
+                                  - component: f7-block
+                                    config:
+                                      class: fill
+                                      style:
+                                        margin-top: 0px
+                                        position: absolute
+                                        width: 100%
+                                        height: 100%
+                                        border-radius: 100%
+                                        z-index: 3 !important
+                                        animation: right 1s linear both
+                                        transition: transform 0.6s
+                                  - component: f7-block
+                                    config:
+                                      class: fill fill2
+                                      style:
+                                        position: absolute
+                                        margin-top: 0px
+                                        width: 100%
+                                        height: 100%
+                                        border-radius: 50%
+                                        z-index: 3 !important
+                                        clip: "=props.size ? 'rect(0px, ' + (Number(props.size)*0.89/2) + 'px, ' + (Number(props.size)*0.89) + 'px, 0px)' : 'rect(0px, 178px, 356px, 0px)'"
+                                        background: "=props.colorBarStartPoint && props.colorBarEndPoint ? '-webkit-linear-gradient(top, ' + props.colorBarEndPoint + ' 40%,' + props.colorBarStartPoint + ' 100%)' : '-webkit-linear-gradient(top, rgb(255, 73, 0) 40%,rgb(255, 158, 35) 100%)'"
+                                        transform: "=(items[props.setPointItem].state.split(' ')[0] <= (((Number(props.maxTemp) - Number(props.minTemp)) / 2) + Number(props.minTemp)) && items[props.setPointItem].state.split(' ')[0] >= Number(props.minTemp) ? 'rotate('+(320/(Number(props.maxTemp)-Number(props.minTemp))*(items[props.setPointItem].state.split(' ')[0]-Number(props.minTemp))+20)+'deg)' : (items[props.setPointItem].state.split(' ')[0] > (((Number(props.maxTemp) - Number(props.minTemp)) / 2) + Number(props.minTemp))) ? 'rotate(180deg)' :  '')"
+                            - component: f7-block
+                              config:
+                                class: span
+                                style:
+                                  margin-top: 0px
+                                  width: "=props.size ? (Number(props.size)*0.89) +'px' : '356px'"
+                                  font-weight: "=props.size ? (Number(props.size)*2) +'px' : '800'"
+                                  position: absolute
+                                  bottom: 0px
+                                  text-align: center
+                                  text-transform: uppercase
+                                  font-size: "=props.size ? (Number(props.size)*0.0375) +'px' : '15px'"
+                                  color: "=props.colorTypo ? props.colorTypo : 'rgb(87, 84, 95)'"
+                                  z-index: 99 !important
+                              slots:
+                                default:
+                                  - component: Label
+                                    config:
+                                      text: Heating
+                      - component: f7-block
+                        config:
+                          class: shadow
+                          style:
+                            margin-top: 0px
+                            position: absolute
+                            top: 50%
+                            left: 50%
+                            transform: "=(items[props.setPointItem].state.split(' ')[0] >= Number(props.minTemp) && items[props.setPointItem].state.split(' ')[0] <= Number(props.maxTemp) ? 'translate(-50%, -50%) rotate('+(320/(Number(props.maxTemp)-Number(props.minTemp))*(items[props.setPointItem].state.split(' ')[0]-Number(props.minTemp))-160)+'deg)' : 'translate(-50%, -50%) rotate(0deg)')"
+                            width: "=props.size ? (Number(props.size)*0.0625) +'px' : '25px'"
+                            height: 86%
+                            text-align: center
+                            transition: 0.7s ease
+                            animation: shadow 1.4s ease-out both
+                        slots:
+                          default:
+                            - component: f7-block
+                              config:
+                                class: shadow-cube
+                                style:
+                                  margin-top: 0px
+                                  position: absolute
+                                  top: 0
+                                  width: "=props.size ? (Number(props.size)*0.0625) +'px' : '25px'"
+                                  height: 0px
+                                  box-shadow: "=props.size ? '0 0 ' + (Number(props.size)*0.1125) +'px ' + (Number(props.size)*0.0325) + 'px ' + (props.colorSetMarker ? props.colorSetMarker : 'rgba(255, 158, 35, 0.5)'): '0 0 45px 13px rgba(255, 158, 35, 0.5)'"
+                      - component: f7-block
+                        config:
+                          class: markerContainer
+                          style:
+                            margin-top: 0px
+                            position: absolute
+                            top: 50%
+                            left: 50%
+                            transform: "=(items[props.currentPointItem].state.split(' ')[0] >= Number(props.minTemp) && items[props.currentPointItem].state.split(' ')[0] <= Number(props.maxTemp) ? 'translate(-50%, -50%) rotate('+(320/(Number(props.maxTemp)-Number(props.minTemp))*(items[props.currentPointItem].state.split(' ')[0]-Number(props.minTemp))-160)+'deg)' : 'translate(-50%, -50%) rotate(0deg)')"
+                            width: "=props.size ? (Number(props.size)*0.1) +'px' : '40px'"
+                            height: 82%
+                            text-align: center
+                            transition: 0.7s ease
+                            opacity: 1
+                        slots:
+                          default:
+                            - component: f7-block
+                              config:
+                                class: markerCurrent
+                                style:
+                                  margin-top: 0px
+                                  width: "=props.size ? (Number(props.size)*0.1) +'px' : '40px'"
+                                  height: "=props.size ? (Number(props.size)*0.1) +'px' : '40px'"
+                                  background: "=props.colorCurrentMarker ? props.colorCurrentMarker : 'rgb(33, 150, 243)'"
+                                  position: absolute
+                                  transform: translate(-50%,-50%) rotate(135deg)
+                                  left: 50%
+                                  top: "=props.size ? (Number(props.size)*0.0375) +'px' : '15px'"
+                                  border-radius: 50% 50% 50% 0
+                                  box-shadow: 0 0 5px 1px rgb(48, 46, 56)
+                                  z-index: 99 !important
+                              slots:
+                                default:
+                                  - component: f7-block
+                                    config:
+                                      class: number
+                                      style:
+                                        margin-top: 0px
+                                        position: absolute
+                                        top: 50%
+                                        left: 50%
+                                        transform: translate(-50%, -50%) rotate(-135deg)
+                                        text-align: center
+                                    slots:
+                                      default:
+                                        - component: Label
+                                          config:
+                                            text: =items[props.currentPointItem].state.split(' ')[0]
+                                            style:
+                                              font-size: "=props.size ? (Number(props.size)*0.04) +'px' : '14px'"
+                                              color: white
+                                              font-weight: bold
+                      - component: f7-block
+                        config:
+                          class: markerContainer
+                          style:
+                            margin-top: 0px
+                            position: absolute
+                            top: 50%
+                            left: 50%
+                            transform: "=(items[props.setPointItem].state.split(' ')[0] >= Number(props.minTemp) && items[props.setPointItem].state.split(' ')[0] <= Number(props.maxTemp) ? 'translate(-50%, -50%) rotate('+(320/(Number(props.maxTemp)-Number(props.minTemp))*(items[props.setPointItem].state.split(' ')[0]-Number(props.minTemp))-160)+'deg)' : 'translate(-50%, -50%) rotate(0deg)')"
+                            width: "=props.size ? (Number(props.size)*0.1) +'px' : '40px'"
+                            height: 100%
+                            text-align: center
+                            transition: 0.7s ease
+                            opacity: 1
+                        slots:
+                          default:
+                            - component: f7-block
+                              config:
+                                class: markerSet
+                                style:
+                                  margin-top: 0px
+                                  width: "=props.size ? (Number(props.size)*0.1) +'px' : '40px'"
+                                  height: "=props.size ? (Number(props.size)*0.1) +'px' : '40px'"
+                                  background: "=props.colorSetMarker ? props.colorSetMarker : 'rgb(230, 74, 25)'"
+                                  position: absolute
+                                  transform: translate(-50%,-50%) rotate(-45deg)
+                                  left: 50%
+                                  top: "=props.size ?  (Number(props.size)*Number(-0.0125)) +'px': '-5px'"
+                                  border-radius: 50% 50% 50% 0
+                                  box-shadow: 0 0 5px 1px rgb(48, 46, 56)
+                                  z-index: 100 !important
+                              slots:
+                                default:
+                                  - component: f7-block
+                                    config:
+                                      class: number
+                                      style:
+                                        margin-top: 0px
+                                        position: absolute
+                                        top: 50%
+                                        left: 50%
+                                        transform: translate(-50%, -50%) rotate(45deg)
+                                        text-align: center
+                                    slots:
+                                      default:
+                                        - component: Label
+                                          config:
+                                            text: =items[props.setPointItem].state.split(' ')[0]
+                                            style:
+                                              font-size: "=props.size ? (Number(props.size)*0.04) +'px' : '14px'"
+                                              color: white
+                                              font-weight: bold
+                      - component: f7-block
+                        config:
+                          class: center
+                          style:
+                            margin-top: 0px
+                            position: absolute
+                            width: "=props.size ? (Number(props.size)*0.65) +'px' : '260px'"
+                            height: "=props.size ? (Number(props.size)*0.65) +'px' : '260px'"
+                            background: "=props.colorControlRing ? props.colorControlRing : 'rgb(227, 228, 237)'"
+                            animation: bound-in 0.6s ease forwards
+                            top: 50%
+                            left: 50%
+                            transform: translate(-50%, -50%)
+                            border-radius: 50%
+                            box-shadow: 0px 15px 35px 11px rgba(46, 44, 58,0.60)
+                        slots:
+                          default:
+                            - component: oh-toggle
+                              config:
+                                visible: "=props.toggleItem ? true : false"
+                                item: =props.toggleItem
+                                style:
+                                  position: absolute
+                                  bottom: 0%
+                                  left: 50%
+                                  transform: translate(-50%,-50%)
+                                  color: "=props.colorButton ? props.colorButton + ' !important': ''"
+                            - component: oh-button
+                              config:
+                                style:
+                                  --f7-button-hover-bg-color: transparent
+                                  --f7-button-pressed-bg-color: transparent
+                                  width: 30%
+                                  height: 50%
+                                  position: absolute
+                                  margin-top: 0px
+                                  top: 50%
+                                  left: 10%
+                                  transform: translate(-50%, -50%)
+                                  color: "=props.colorButton ? props.colorButton : ''"
+                                action: command
+                                actionItem: =props.setPointItem
+                                actionCommand: =Number(items[props.setPointItem].state.split(' ')[0]) - 0.5
+                              slots:
+                                default:
+                                  - component: f7-icon
+                                    config:
+                                      size: "=props.size ? (Number(props.size)*0.075) : '30'"
+                                      style:
+                                        position: absolute
+                                        transform: translate(-50%, -50%)
+                                        top: 50%
+                                        margin-top: auto
+                                      f7: arrow_turn_left_down
+                            - component: oh-button
+                              config:
+                                style:
+                                  --f7-button-hover-bg-color: transparent
+                                  --f7-button-pressed-bg-color: transparent
+                                  width: 30%
+                                  height: 50%
+                                  position: relative
+                                  margin-top: 0px
+                                  top: 50%
+                                  left: 90%
+                                  transform: translate(-50%, -50%)
+                                  color: "=props.colorButton ? props.colorButton : ''"
+                                action: command
+                                actionItem: =props.setPointItem
+                                actionCommand: =Number(items[props.setPointItem].state.split(' ')[0]) + 0.5
+                              slots:
+                                default:
+                                  - component: f7-icon
+                                    config:
+                                      size: "=props.size ? (Number(props.size)*0.075) : '30'"
+                                      style:
+                                        position: absolute
+                                        transform: translate(-50%, -50%)
+                                        top: 50%
+                                        margin-top: auto
+                                      f7: arrow_turn_right_up
+                            - component: f7-block
+                              config:
+                                class: small
+                                style:
+                                  margin-top: 0px
+                                  position: absolute
+                                  width: "=props.size ? (Number(props.size)*0.375) +'px' : '150px'"
+                                  height: "=props.size ? (Number(props.size)*0.375) +'px' : '150px'"
+                                  background: "=props.colorCenter ? props.colorCenter : 'rgb(248, 249, 250)'"
+                                  text-align: center
+                                  animation: bound-in-small 0.6s ease forwards
+                                  top: 50%
+                                  left: 50%
+                                  transform: translate(-50%, -50%)
+                                  border-radius: 50%
+                                  box-shadow: 0px 5px 10px 5px rgba(96, 93, 111,0.19)
+                              slots:
+                                default:
+                                  - component: f7-block
+                                    config:
+                                      class: heat
+                                      style:
+                                        font-size: "=props.size ? (Number(props.size)*0.0375) +'px' : '14px'"
+                                        color: "=props.colorTypo ? props.colorTypo : 'rgb(87, 84, 95)'"
+                                        font-weight: 300
+                                    slots:
+                                      default:
+                                        - component: Label
+                                          config:
+                                            text: =props.location
+                                  - component: f7-block
+                                    config:
+                                      class: heat
+                                      style:
+                                        font-size: "=props.size ? (Number(props.size)*0.1000) +'px' : '40px'"
+                                        color: "=props.colorTypo ? props.colorTypo : 'rgb(87, 84, 95)'"
+                                        font-weight: 300
+                                    slots:
+                                      default:
+                                        - component: Label
+                                          config:
+                                            text: "=props.unit ? items[props.setPointItem].state.split(' ')[0] + '' + props.unit : items[props.setPointItem].state.split(' ')[0]"
+                                  - component: oh-image
+                                    config:
+                                      url: https://pbs.twimg.com/profile_banners/1102507312714002432/1609178314/1500x500
+                                      style:
+                                        position: absolute
+                                        transform: translate(-50%)
+                                        left: 50%
+                                        width: 40%
