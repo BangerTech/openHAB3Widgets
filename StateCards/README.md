@@ -20,3 +20,8 @@ Card_Battery_State
 
 ![6666666](https://user-images.githubusercontent.com/73241309/145116235-b7155590-ee9a-4330-8f6e-df1d71970c52.PNG)
 
+Card_Temp_Control
+
+![777777](https://user-images.githubusercontent.com/73241309/145116783-fafd7e53-1371-4e0a-a885-575dc5ed7bf2.PNG)
+
+
