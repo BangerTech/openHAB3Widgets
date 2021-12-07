@@ -9,3 +9,9 @@ Card_Weather_Small_1
 Card_Weather_Small_Static_2
 
 ![4weqtadrgas](https://user-images.githubusercontent.com/73241309/145118140-6ffabac0-aa98-41ba-89da-ad8f613d23e6.PNG)
+
+Cell_Weather_1
+
+![sdfgsadg](https://user-images.githubusercontent.com/73241309/145118438-a0daa521-27f0-4d0f-b18e-469e8c6a539c.PNG)
+
+
