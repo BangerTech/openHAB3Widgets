@@ -145,8 +145,8 @@ slots:
                   config:
                     height: 14
                     style:
-                      align-self: center
                       place-self: end
+                      align-self: center
                     url: ='/static/icons/' + props.iconimage2 + '.png'
                     width: 14
                 - component: Label
@@ -169,8 +169,8 @@ slots:
                   config:
                     height: 14
                     style:
-                      align-self: center
                       place-self: end
+                      align-self: center
                     url: ='/static/icons/' + props.iconimage1 + '.png'
                     width: 14
                 - component: Label
@@ -193,8 +193,8 @@ slots:
                   config:
                     height: 14
                     style:
-                      align-self: center
                       place-self: end
+                      align-self: center
                     url: https://iconsplace.com/wp-content/uploads/_icons/ffffff/256/png/time-icon-18-256.png
                     width: 14
                 - component: Label
