@@ -1,0 +1,74 @@
+uid: 2way-Button
+tags: []
+props:
+  parameters:
+    - label: Headline
+      name: headline
+      required: false
+      type: TEXT
+    - label: Headline Color
+      name: headlinecolor
+      required: false
+      type: TEXT
+    - label: Headline Weight
+      name: headlineweight
+      required: false
+      type: TEXT
+    - label: Left Button
+      name: leftButton
+      required: false
+      type: TEXT
+    - label: Right Button
+      name: rightButton
+      required: false
+      type: TEXT
+    - context: item
+      label: Item
+      name: item
+      required: false
+      type: TEXT
+    - label: Background
+      name: background
+      required: false
+      type: TEXT
+timestamp: Feb 19, 2021, 9:32:06 PM
+component: f7-card
+config:
+  style:
+    background: '=(props.background) ? props.background : ""'
+slots:
+  default:
+    - component: Label
+      config:
+        text: '=(props.headline) ? props.headline : "Headline"'
+        style:
+          color: '=(props.headlinecolor) ? props.headlinecolor : "white"'
+          padding-bottom: 0px
+          padding-top: 15px
+          margin-top: 0px
+          margin-left: 25px
+          font-weight: '=(props.headlineweight) ? props.headlineweight : "normal"'
+    - component: f7-card-content
+      slots:
+        default:
+          - component: f7-segmented
+            config:
+              raised: true
+              round: true
+              strong: true
+            slots:
+              default:
+                - component: oh-button
+                  config:
+                    text: '=(props.leftButton) ? props.leftbutton : "Anwesend"'
+                    actionItem: =(props.item)
+                    actionCommand: ON
+                    action: command
+                    active: =(items[props.item].state === 'ON')
+                - component: oh-button
+                  config:
+                    text: '=(props.rightButton) ? props.rightButton : "Abwesend"'
+                    actionItem: =(props.item)
+                    actionCommand: OFF
+                    action: command
+                    active: =(items[props.item].state === 'OFF')
