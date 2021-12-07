@@ -15,3 +15,8 @@ Service_Card
 Card_Room_Popup+Motion
 
 ![333](https://user-images.githubusercontent.com/73241309/145102418-8612a8d3-e664-4236-8d1b-8b07507c994a.PNG)
+
+Card_Battery_State
+
+![6666666](https://user-images.githubusercontent.com/73241309/145116235-b7155590-ee9a-4330-8f6e-df1d71970c52.PNG)
+
