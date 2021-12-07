@@ -153,7 +153,7 @@ slots:
                             - component: f7-icon
                               config:
                                 f7: equal
-                                size: 40
+                                size: 0
                                 style:
                                   grid-column: 1
                                   color: white
