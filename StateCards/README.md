@@ -24,4 +24,6 @@ Card_Temp_Control
 
 ![777777](https://user-images.githubusercontent.com/73241309/145116783-fafd7e53-1371-4e0a-a885-575dc5ed7bf2.PNG)
 
+Card_Temp_1
 
+![8888888](https://user-images.githubusercontent.com/73241309/145117048-00c408ea-fda0-48f8-827d-d7ee835a3856.PNG)
