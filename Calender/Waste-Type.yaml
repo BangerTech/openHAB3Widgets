@@ -1,0 +1,99 @@
+uid: Waste-Type
+tags: []
+props:
+  parameters:
+    - description: Small title on top of the card
+      label: Title
+      name: title
+      required: false
+      type: TEXT
+    - description: Icon on top of the card (only f7 icons (without f7:))
+      label: Icon
+      name: icon
+      required: false
+      type: TEXT
+    - context: item
+      description: Item für Beschreibung der nächsten Abholung
+      label: Item
+      name: item
+      required: false
+      type: TEXT
+    - context: item
+      description: Datum der nächsten Abholung
+      label: Item_Datum
+      name: item_date
+      required: false
+      type: TEXT
+  parameterGroups: []
+timestamp: Nov 24, 2021, 11:12:20 PM
+component: f7-card
+config:
+  style:
+    background: '=(items[props.item].state) == "Restmüll (grau) // GEM" ? "gray" : (items[props.item].state) == "Altpapier (blau) // GEM" ? "blue" : (items[props.item].state) == "Verpackungen (gelb) // GEM" ? "yellow" : "Bioabfall (braun) // GEM" ? "green" : "Grünschnitt //GEM" ? "green" : "teal"'
+    border-radius: var(--f7-card-expandable-border-radius)
+    box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.1)
+    class:
+      - padding: 0px
+    height: 100px
+    margin-left: 5px
+    margin-right: 5px
+    noShadow: false
+slots:
+  content:
+    - component: f7-block
+      config:
+        style:
+          display: flex
+          flex-direction: row
+          left: 16px
+          position: absolute
+          top: -5px
+      slots:
+        default:
+          - component: f7-icon
+            config:
+              f7: =props.icon
+              size: 18
+              style:
+                margin-right: 10px
+              visible: "=props.icon ? true : false"
+          - component: Label
+            config:
+              style:
+                font-size: 12px
+                margin-top: 0px
+              text: "=props.title ? props.title : ''"
+    - component: f7-block
+      config:
+        style:
+          bottom: -15px
+          flex-direction: row
+          left: 16px
+          position: absolute
+      slots:
+        default:
+          - component: Label
+            config:
+              style:
+                font-size: 17px
+                font-weight: 600
+                margin-left: 0px
+                margin-top: 0px
+              text: =items[props.item].state
+    - component: f7-block
+      config:
+        style:
+          bottom: -45px
+          flex-direction: row
+          left: 16px
+          position: absolute
+      slots:
+        default:
+          - component: Label
+            config:
+              style:
+                font-size: 17px
+                font-weight: 600
+                margin-left: 0px
+                margin-top: 0px
+              text: =items[props.item_date].displayState
