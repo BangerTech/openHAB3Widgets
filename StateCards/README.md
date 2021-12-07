@@ -27,3 +27,9 @@ Card_Temp_Control
 Card_Temp_1
 
 ![8888888](https://user-images.githubusercontent.com/73241309/145117048-00c408ea-fda0-48f8-827d-d7ee835a3856.PNG)
+
+Cell_Weather_Actual_1
+
+![sadgag](https://user-images.githubusercontent.com/73241309/145118945-b3c1ca37-d923-46df-b829-5be25a1364cc.PNG)
+
+
