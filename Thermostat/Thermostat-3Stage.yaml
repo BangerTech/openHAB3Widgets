@@ -1,0 +1,128 @@
+uid: Thermostat-3Stage
+tags: []
+props:
+  parameters:
+    - description: Thermostat to control
+      label: Description
+      name: Title
+      required: false
+      type: TEXT
+    - context: item
+      description: Das Item für die gemessene Temperatur
+      label: Ist Temperature Item
+      name: tempItem
+      required: true
+      type: TEXT
+    - context: command
+      description: Unterer Preset
+      label: Temperatur kalt
+      name: tempKalt
+      required: true
+      type: TEXT
+    - context: command
+      description: Normaler Preset
+      label: Temperatur normal
+      name: tempNorm
+      required: true
+      type: TEXT
+    - context: command
+      description: Oberer Preset
+      label: Temperatur warm
+      name: tempWarm
+      required: true
+      type: TEXT
+    - context: item
+      description: Das Item mit dem die Solltemperatur eingestellt wird
+      label: Setpoint Item
+      name: setpointItem
+      required: true
+      type: TEXT
+timestamp: Nov 27, 2021, 10:54:59 AM
+component: f7-card
+config:
+  noBorder: false
+  noShadow: false
+  outline: false
+  padding: true
+  style:
+    --f7-card-border-radius: 15px
+    --f7-card-box-shadow: 0px 5px 10px rgba(0,0,0,0.15)
+    --f7-card-content-padding-horizontal: 16px
+    --f7-card-content-padding-vertical: 0px
+    --f7-card-header-font-size: 14px
+    --f7-card-header-font-weight: 600
+    --f7-card-margin-horizontal: 5px
+slots:
+  content:
+    - component: oh-label-card
+      config:
+        action: analyzer
+        actionAnalyzerCoordSystem: time
+        actionAnalyzerItems: =[props.tempItem,props.setpointItem]
+        icon: f7:thermometer
+        item: =(props.tempItem)
+        noShadow: true
+        title: =(props.Title)
+        trendItem: =(props.tempItem)
+        vertical: false
+    - component: oh-stepper-card
+      config:
+        autorepeat: true
+        color-theme: gray
+        fill: false
+        item: =(props.setpointItem)
+        large: false
+        max: =(props.tempWarm+1)
+        min: =(props.tempKalt-1)
+        noBorder: true
+        noShadow: true
+        raised: true
+        round: true
+        small: true
+        step: 0.5
+    - component: f7-row
+      config:
+        class:
+          - padding-bottom
+          - padding-right
+      slots:
+        default:
+          - component: f7-col
+            slots:
+              default:
+                - component: oh-button
+                  config:
+                    action: command
+                    actionCommand: =(props.tempKalt)
+                    actionItem: =(props.setpointItem)
+                    iconColor: blue
+                    iconF7: thermometer_snowflake
+                    text: min
+                    textColor: blue
+                    title: Kalt
+          - component: f7-col
+            slots:
+              default:
+                - component: oh-button
+                  config:
+                    action: command
+                    actionCommand: =(props.tempNorm)
+                    actionItem: =(props.setpointItem)
+                    iconColor: orange
+                    iconF7: thermometer
+                    text: ok
+                    textColor: orange
+                    title: Normal
+          - component: f7-col
+            slots:
+              default:
+                - component: oh-button
+                  config:
+                    action: command
+                    actionCommand: =(props.tempWarm)
+                    actionItem: =(props.setpointItem)
+                    iconColor: red
+                    iconF7: thermometer_sun
+                    text: max
+                    textColor: red
+                    title: Warm
