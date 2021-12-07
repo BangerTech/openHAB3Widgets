@@ -1,0 +1,209 @@
+uid: Light_Card_Stack
+tags:
+  - dropdown
+props:
+  parameters: []
+  parameterGroups: []
+timestamp: Nov 25, 2021, 2:25:10 PM
+component: oh-list-card
+config:
+  accordionList: true
+  title: Erdgeschoss
+slots:
+  default:
+    - component: oh-list-item
+      config:
+        icon: oh:corridor
+        title: Flur
+      slots:
+        accordion:
+          - component: oh-list
+            config:
+              accordionList: true
+              class:
+                - margin-left
+            slots:
+              default:
+                - component: oh-list-item
+                  config:
+                    badge: '=(items.Treppe.state === "ON") ? "An" : "Aus"'
+                    badgeColor: '=items.Treppe.state === "ON" ? "green" : "red"'
+                    icon: oh:light
+                    title: Licht Treppe
+                  slots:
+                    accordion:
+                      - component: oh-list
+                        config:
+                          accordionList: true
+                          class:
+                            - margin-left
+                        slots:
+                          default:
+                            - component: oh-toggle-item
+                              config:
+                                color: blue
+                                icon: oh:switch
+                                item: Treppe
+                                title: Power
+    - component: oh-list-item
+      config:
+        icon: oh:sofa
+        title: Wohnzimmer
+      slots:
+        accordion:
+          - component: oh-list
+            config:
+              accordionList: true
+              class:
+                - margin-left
+            slots:
+              default:
+                - component: oh-list-item
+                  config:
+                    badge: =items.Kugelleuchte_Leistung.state
+                    badgeColor: '=items.Kugelleuchte_Helligkeit.state > "0" ? "green" : "red"'
+                    footer: Die Leistung wird in dem grünen bzw. roten Aktivitätsmerkmal angezeigt.
+                    icon: oh:light
+                    title: Kugelleuchte
+                  slots: {}
+                - component: oh-list
+                  config:
+                    accordionList: true
+                    class:
+                      - margin-left
+                  slots:
+                    default:
+                      - component: oh-slider-item
+                        config:
+                          color: blue
+                          item: Kugelleuchte_Helligkeit
+                          title: Helligkeit
+                      - component: oh-slider-item
+                        config:
+                          color: blue
+                          item: Kugelleuchte_Lichttemperatur
+                          title: Lichttemperatur
+                - component: oh-list-item
+                  config:
+                    badge: '=(items.Decke.state === "ON") ? "An" : "Aus"'
+                    badgeColor: '=items.Decke.state === "ON" ? "green" : "red"'
+                    icon: oh:light
+                    title: Licht Galerie
+                  slots:
+                    accordion:
+                      - component: oh-list
+                        config:
+                          accordionList: true
+                          class:
+                            - margin-left
+                        slots:
+                          default:
+                            - component: oh-toggle-item
+                              config:
+                                color: blue
+                                icon: oh:switch
+                                item: Decke
+                                title: Power
+                - component: oh-list-item
+                  config:
+                    badge: '=(items.Tischleuchte.state === "ON") ? "An" : "Aus"'
+                    badgeColor: '=items.Tischleuchte.state === "ON" ? "green" : "red"'
+                    icon: oh:light
+                    title: Tischleuchte
+                  slots:
+                    accordion:
+                      - component: oh-list
+                        config:
+                          accordionList: true
+                          class:
+                            - margin-left
+                        slots:
+                          default:
+                            - component: oh-toggle-item
+                              config:
+                                color: blue
+                                icon: oh:switch
+                                item: Tischleuchte
+                                title: Power
+                - component: oh-list-item
+                  config:
+                    badge: =items.TVLeuchte_Leistung.state
+                    badgeColor: '=items.TVLeuchte_Helligkeit.state > "0" ? "green" : "red"'
+                    footer: Die Leistung wird in dem grünen bzw. roten Aktivitätsmerkmal angezeigt.
+                    icon: oh:light
+                    title: TV Leuchte
+                  slots:
+                    accordion:
+                      - component: oh-list
+                        config:
+                          accordionList: true
+                          class:
+                            - margin-left
+                        slots:
+                          default:
+                            - component: oh-slider-item
+                              config:
+                                color: blue
+                                item: TVLeuchte_Helligkeit
+                                title: Helligkeit
+                            - component: oh-slider-item
+                              config:
+                                color: blue
+                                item: TVLeuchte_Lichttemperatur
+                                title: Lichttemperatur
+                - component: oh-list-item
+                  config:
+                    badge: '=(items.Vitrine_Betrieb.state === "ON") ? "An" : "Aus"'
+                    badgeColor: '=items.Vitrine_Betrieb.state === "ON" ? "green" : "red"'
+                    icon: oh:light
+                    title: Licht Vitrine
+                  slots:
+                    accordion:
+                      - component: oh-list
+                        config:
+                          config:
+                            accordionList: true
+                            class:
+                              - margin-left
+                        slots:
+                          default:
+                            - component: oh-toggle-item
+                              config:
+                                color: blue
+                                icon: oh:switch
+                                item: Vitrine_Betrieb
+                                title: Power
+    - component: oh-list-item
+      config:
+        icon: oh:Kitchen
+        title: Küche
+      slots:
+        accordion:
+          - component: oh-list
+            config:
+              accordionList: true
+              class:
+                - margin-left
+            slots:
+              default:
+                - component: oh-list-item
+                  config:
+                    badge: '=(items.Fensterleuchte_Betrieb.state === "ON") ? "An" : "Aus"'
+                    badgeColor: '=items.Fensterleuchte_Betrieb.state === "ON" ? "green" : "red"'
+                    icon: oh:light
+                    title: Licht Küchenfenster
+                  slots:
+                    accordion:
+                      - component: oh-list
+                        config:
+                          accordionList: true
+                          class:
+                            - margin-left
+                        slots:
+                          default:
+                            - component: oh-toggle-item
+                              config:
+                                color: blue
+                                icon: oh:switch
+                                item: Fensterleuchte_Betrieb
+                                title: Power
