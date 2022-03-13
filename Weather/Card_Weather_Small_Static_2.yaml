@@ -792,7 +792,7 @@ slots:
                                         padding-bottom: 5px
                                   - component: Label
                                     config:
-                                      text: "=Math.round(items[((!props.itemPrefix) ? '' : props.itemPrefix) + 'ForecastHours' + ((loop.hour_idx < 10 ? '0'+(loop.hour_idx) : loop.hour_idx)) + '_Precipprobability'].state.split(' ')[0]) + '%'"
+                                      text: "=Math.round(items[((!props.itemPrefix) ? '' : props.itemPrefix) + 'ForecastHours' + (loop.hour_idx === 0 ? '0'+(loop.hour_idx + 1) :(loop.hour_idx < 10 ? '0'+(loop.hour_idx) : loop.hour_idx)) + '_Precipprobability'].state.split(' ')[0]) + '%'"
                                       style:
                                         font-size: var(--weather-font-size-normal)
                                         font-weight: 400
