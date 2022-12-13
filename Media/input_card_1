@@ -1,0 +1,54 @@
+uid: input_card_1
+tags: []
+props:
+  parameters:
+    - label: Header
+      name: text_header
+      required: false
+      type: TEXT
+    - label: Background Image
+      name: bgimage
+      required: false
+      type: TEXT
+    - label: Background Color
+      name: bgcolor
+      required: false
+      type: TEXT
+    - context: item
+      description: item for sending text
+      label: Item
+      name: text
+      required: false
+      type: TEXT
+timestamp: Jun 20, 2022, 6:08:59 PM
+component: f7-card
+config:
+  style:
+    background: "=props.bgimage ? 'url(' + props.bgimage + ')' : ''"
+    background-color: "=props.bgcolor ? props.bgcolor : ''"
+    background-position: center
+    background-repeat: no-repeat
+    background-size: cover
+    border-radius: var(--f7-card-expandable-border-radius)
+    box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.1)
+    class:
+      - padding: 0px
+    height: 130px
+    margin-left: 5px
+    margin-right: 5px
+    noShadow: false
+    object-position: center
+    padding-top: 5px
+slots:
+  default:
+    - component: oh-input-card
+      config:
+        inputmode: text
+        item: =props.text
+        outline: false
+        sendButton: true
+        title: "=props.text_header ? props.text_header : 'Set Props'"
+        type: text
+        validate: true
+        visible: true
+        
