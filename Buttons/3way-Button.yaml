@@ -1,0 +1,220 @@
+uid: 3way-Button
+tags:
+  - 3 buttons
+  - popup
+props:
+  parameters:
+    - label: Header
+      name: text_header
+      required: false
+      type: TEXT
+    - description: icon name without ".png", located in static/icons/ folder
+      label: Icon
+      name: iconimage
+      required: false
+      type: TEXT
+    - description: Page which will be opened as popup
+      label: Page ID
+      name: page
+      required: false
+    - default: Start
+      description: Text to show on the button.
+      label: Button Update
+      name: buttonupdate
+      required: true
+      type: TEXT
+      groupName: display
+    - default: Start
+      description: Text to show on the button.
+      label: Button Reboot
+      name: buttonreboot
+      required: true
+      type: TEXT
+      groupName: display
+    - default: Start
+      description: Text to show on the button.
+      label: Button Shutdown
+      name: buttonshutdown
+      required: true
+      type: TEXT
+      groupName: display
+    - context: item
+      description: Item to use with this button.
+      label: Item
+      name: itemupdate
+      required: true
+      type: TEXT
+      groupName: item
+    - context: item
+      description: Item to use with this button.
+      label: Item
+      name: itemreboot
+      required: true
+      type: TEXT
+      groupName: item
+    - context: item
+      description: Item to use with this button.
+      label: Item
+      name: itemshutdown
+      required: true
+      type: TEXT
+      groupName: item
+    - default: ON
+      description: Command to send to the item.
+      label: Command
+      name: command
+      required: true
+      type: TEXT
+      groupName: item
+  parameterGroups:
+    - name: display
+      label: Display Options
+    - name: item
+      label: Item
+timestamp: Mar 2, 2023, 9:00:31 PM
+component: f7-card
+config:
+  style:
+    background-color: "=props.bgcolor ? props.bgcolor : ''"
+    border-radius: var(--f7-card-expandable-border-radius)
+    box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.1)
+    height: 120px
+    noShadow: false
+    padding: 0px
+slots:
+  content:
+    - component: f7-block
+      config:
+        style:
+          left: 50px
+          position: absolute
+          top: 20px
+      slots:
+        default:
+          - component: Label
+            config:
+              style:
+                font-size: 17px
+                font-weight: 600
+                margin-left: 0px
+                margin-top: -30px
+              text: "=props.text_header ? props.text_header : 'Set Props'"
+    - component: f7-block
+      config:
+        class: bog
+        style:
+          display: grid
+          gap: 15px
+          grid-template-columns: auto auto auto
+          padding: 10px
+          padding-bottom: 5px
+          padding-left: 20px
+          padding-right: 15px
+          padding-top: 50px
+          round: true
+      slots:
+        default:
+          - component: oh-button
+            config:
+              action: command
+              actionCommand: =props.command
+              actionItem: =props.itemupdate
+              active: =(items[props.itemupdate].state === props.command)
+              bgColor: "=items[props.itemupdate].state === 'ON' ? 'lightblue' : 'rgba(245, 40, 145, 0.8)'"
+              borderColor: black
+              class:
+                - elevation-2
+                - elevation-hover-10
+                - elevation-pressed-2
+                - elevation-transition
+              fill: true
+              icon-f7: power
+              iconColor: "=items[props.itemupdate].state === 'ON' ? 'white' : 'lightblue'"
+              iconSize: 15
+              outline: false
+              raised: true
+              round: true
+              shadow: true
+              strong: true
+              style:
+                align-items: center
+                color: white
+                display: flex
+                width: 100%
+              text: =props.buttonupdate
+          - component: oh-button
+            config:
+              action: command
+              actionCommand: =props.command
+              actionItem: =props.itemreboot
+              active: =(items[props.itemreboot].state === props.command)
+              bgColor: "=items[props.itemreboot].state === 'ON' ? 'lightblue' : 'rgba(245, 40, 145, 0.8)'"
+              borderColor: black
+              class:
+                - elevation-2
+                - elevation-hover-10
+                - elevation-pressed-2
+                - elevation-transition
+              fill: true
+              icon-f7: power
+              iconColor: lightblue
+              iconSize: 15
+              outline: false
+              raised: true
+              round: true
+              shadow: true
+              strong: true
+              style:
+                align-items: center
+                color: white
+                display: flex
+                width: 100%
+              text: =props.buttonreboot
+          - component: oh-button
+            config:
+              action: command
+              actionCommand: =props.command
+              actionItem: =props.itemshutdown
+              active: =(items[props.itemshutdown].state === props.command)
+              bgColor: "=items[props.itemshutdown].state === 'ON' ? 'lightblue' : 'rgba(245, 40, 145, 0.8)'"
+              borderColor: black
+              class:
+                - elevation-2
+                - elevation-hover-10
+                - elevation-pressed-2
+                - elevation-transition
+              fill: true
+              icon-f7: power
+              iconColor: lightblue
+              iconSize: 15
+              outline: false
+              raised: true
+              round: true
+              shadow: true
+              strong: true
+              style:
+                align-items: center
+                color: white
+                display: flex
+                width: 100%
+              text: =props.buttonshutdown
+    - component: oh-link
+      config:
+        action: popup
+        actionModal: ='page:' + props.page
+        style:
+          height: 30px
+          left: 0px
+          position: absolute
+          top: 0px
+          width: 100%
+    - component: oh-image
+      config:
+        style:
+          height: 25px
+          left: 16px
+          opacity: 0.7
+          position: absolute
+          top: 10px
+        url: ='/static/icons/' + props.iconimage + '.png'
+        visible: "=props.iconimage ? true : false"
