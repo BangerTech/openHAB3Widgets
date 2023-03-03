@@ -8,4 +8,4 @@ Chromecast_1
 
 input_card_1
 
-![Bildschirmfoto vom 2022-12-13 16-06-16](https://user-images.githubusercontent.com/73241309/207369631-43f76070-cf91-4cd8-9e3f-c1cdc6ec3b75.png)
+<img width="569" alt="Bildschirmfoto 2023-03-03 um 09 41 27" src="https://user-images.githubusercontent.com/73241309/222673283-b25ee0a4-faa1-41a3-bdae-d9db9693951c.png">
