@@ -1,0 +1,43 @@
+uid: Card_Info
+tags: []
+props:
+  parameters:
+    - description: Small title on top of the card
+      label: Title
+      name: title
+      required: false
+      type: TEXT
+    - context: item
+      description: Item für Beschreibung der nächsten Abholung
+      label: Item
+      name: item
+      required: false
+      type: TEXT
+  parameterGroups: []
+timestamp: Mar 1, 2023, 10:23:41 PM
+component: f7-card
+config:
+  style:
+    border-radius: var(--f7-card-expandable-border-radius)
+    box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.1)
+    height: 120px
+    noShadow: false
+    raised: true
+slots:
+  content:
+    - component: f7-block
+      config: {}
+      slots:
+        default:
+          - component: Label
+            config:
+              style:
+                font-size: 14px
+                height: 110px
+                margin-bottom: 20px
+                margin-left: 0px
+                margin-top: -27px
+                overflow: auto
+                padding-right: 0px
+                scrollbar-width: none
+              text: =items[props.item].state
