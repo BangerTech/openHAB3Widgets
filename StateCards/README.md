@@ -6,6 +6,10 @@ Connection_Card_2
 
 ![222](https://user-images.githubusercontent.com/73241309/145099421-0f9623e2-34c7-417b-b4c5-e02be9dec83b.PNG)
 
+Card_Info
+
+<img width="600" alt="Bildschirmfoto 2023-03-03 um 09 00 29" src="https://user-images.githubusercontent.com/73241309/222664624-e9a1c29e-2c00-4efe-8166-7a36821488ed.png">
+
 
 Service_Card
 
