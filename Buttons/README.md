@@ -4,7 +4,7 @@
 
 3way-Button
 
-<img width="564" alt="Bildschirmfoto 2023-03-03 um 08 57 38" src="https://user-images.githubusercontent.com/73241309/222664065-c4b90e0d-adf8-4808-9f19-728245ce0f98.png">
+<img width="537" alt="Bildschirmfoto 2023-03-03 um 09 23 56" src="https://user-images.githubusercontent.com/73241309/222669641-f0a27002-9557-4cb0-84ab-4b6963b4c066.png">
 
 
 4way-Button
