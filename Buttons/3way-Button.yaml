@@ -71,7 +71,7 @@ props:
       label: Display Options
     - name: item
       label: Item
-timestamp: Mar 2, 2023, 9:00:31 PM
+timestamp: Mar 3, 2023, 9:23:08 AM
 component: f7-card
 config:
   style:
@@ -97,7 +97,7 @@ slots:
                 font-size: 17px
                 font-weight: 600
                 margin-left: 0px
-                margin-top: -30px
+                margin-top: -27px
               text: "=props.text_header ? props.text_header : 'Set Props'"
     - component: f7-block
       config:
@@ -110,7 +110,7 @@ slots:
           padding-bottom: 5px
           padding-left: 20px
           padding-right: 15px
-          padding-top: 50px
+          padding-top: 60px
           round: true
       slots:
         default:
