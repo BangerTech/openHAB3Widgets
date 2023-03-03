@@ -6,6 +6,11 @@ props:
       name: text_header
       required: false
       type: TEXT
+    - description: icon name without ".png", located in static/icons/ folder
+      label: Icon
+      name: iconimage
+      required: false
+      type: TEXT
     - label: Background Image
       name: bgimage
       required: false
@@ -20,26 +25,34 @@ props:
       name: text
       required: false
       type: TEXT
-timestamp: Jun 20, 2022, 6:08:59 PM
+timestamp: Mar 3, 2023, 9:34:38 AM
 component: f7-card
 config:
   style:
-    background: "=props.bgimage ? 'url(' + props.bgimage + ')' : ''"
     background-color: "=props.bgcolor ? props.bgcolor : ''"
-    background-position: center
-    background-repeat: no-repeat
-    background-size: cover
     border-radius: var(--f7-card-expandable-border-radius)
     box-shadow: 5px 5px 10px 1px rgba(0,0,0,0.1)
-    class:
-      - padding: 0px
-    height: 130px
-    margin-left: 5px
-    margin-right: 5px
+    height: 120px
     noShadow: false
-    object-position: center
-    padding-top: 5px
+    padding: 0px
 slots:
+  content:
+    - component: f7-block
+      config:
+        style:
+          left: 50px
+          position: absolute
+          top: 20px
+      slots:
+        default:
+          - component: Label
+            config:
+              style:
+                font-size: 17px
+                font-weight: 600
+                margin-left: 0px
+                margin-top: -27px
+              text: "=props.text_header ? props.text_header : 'Set Props'"
   default:
     - component: oh-input-card
       config:
@@ -47,8 +60,21 @@ slots:
         item: =props.text
         outline: false
         sendButton: true
-        title: "=props.text_header ? props.text_header : 'Set Props'"
         type: text
         validate: true
         visible: true
-        
+        style:
+          margin-left: 50px
+          width: 80%
+          height: 100%
+          position: absolute
+    - component: oh-image
+      config:
+        style:
+          height: 25px
+          left: 16px
+          opacity: 0.7
+          position: absolute
+          top: 10px
+        url: ='/static/icons/' + props.iconimage + '.png'
+        visible: "=props.iconimage ? true : false"
