@@ -27,7 +27,7 @@ props:
     - context: item
       description: Item to use with this button.
       label: Item
-      name: itemupdate
+      name: itembackup
       required: true
       type: TEXT
       groupName: item
